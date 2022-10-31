@@ -10,7 +10,7 @@ const config = {
   title: "Harness Developer Hub",
   tagline:
     "Learn intelligent software delivery at your own pace. Step-by-step tutorials, videos, and reference docs to help you deliver customer happiness.",
-  url: "https://harness-developer.netlify.app",
+  url: "https://developer.harness.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -38,8 +38,8 @@ const config = {
           path: ".",
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/harness/developer-hub/tree/main", // /tree/main/packages/create-docusaurus/templates/shared/
-          include: ["tutorials/**", "docs/**"],
-          exclude: ["**/shared/**", "**/static"],
+          include: ["tutorials/**/*.{md, mdx}", "docs/**/*.{md, mdx}"],
+          exclude: ["**/shared/**", "**/static/**"],
           routeBasePath: "/", //CHANGE HERE
         },
         // blog: {
@@ -50,7 +50,7 @@ const config = {
           customCss: require.resolve("./src/css/custom.css"),
         },
         gtag: {
-          trackingID: "GTM-W895FNP", //, GTM-MJB7HPB is Prod
+          trackingID: "GTM-MJB7HPB", //, GTM-MJB7HPB is Prod - GTM-W895FNP is Pre-Prod
           anonymizeIP: false,
         },
       }),
@@ -71,8 +71,13 @@ const config = {
           {
             position: "left",
             // label: "img",
-            html: "<img src='/img/icon_beta.svg' width='39' height='19' style='margin-top: 8px;' />",
+            html: "<img src='/img/icon_beta.svg' alt='BETA' width='39' height='19' />",
             href: "#",
+          },
+          {
+            type: "search",
+            position: "right",
+            className: "searchBar",
           },
           {
             position: "right",
@@ -120,7 +125,7 @@ const config = {
               {
                 // type: "doc",
                 label: "Install Delegate",
-                to: "tutorials/platform/kubernetes-delegate-install-standalone",
+                to: "tutorials/platform/install-delegate",
               },
             ],
           },
@@ -281,15 +286,15 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Harness Inc.`,
       },
       prism: {
-        theme: lightCodeTheme,
+        theme: darkCodeTheme, // lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
       algolia: {
         // The application ID provided by Algolia
-        appId: "J3B54BEN74",
+        appId: "HPP2NHSWS8",
 
         // Public API key: it is safe to commit it
-        apiKey: "cc3d33ec999dab9f29859d20b9186408",
+        apiKey: "26d5fe04a4fb8f356e8f9f79882544c5",
 
         indexName: "dlp-docs",
 
@@ -297,7 +302,7 @@ const config = {
         contextualSearch: true,
 
         // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
-        externalUrlRegex: "harness-developer\\.netlify\\.app",
+        // externalUrlRegex: "developer\\.harness\\.io",
 
         // Optional: Algolia search parameters
         searchParameters: {},
@@ -324,7 +329,7 @@ const config = {
         siteId: 3194971,
       },
       oneTrust: {
-        dataDomainScript: "3c92e1c8-6228-4d4a-a0e2-5569df288477",
+        dataDomainScript: "59633b83-e34c-443c-a807-63232ce145e5",
       },
     }),
   plugins: [

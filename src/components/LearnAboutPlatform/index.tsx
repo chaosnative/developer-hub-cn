@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import Tooltip from 'rc-tooltip';
 import styles from './styles.module.scss';
 
 // harness-platform.svg | secret-mgmt.svg
 export default function LearnAboutPlatform(): JSX.Element {
+  const [showMore, setShowMore] = useState(false);
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  }
   return (
     <section className={styles.learnAboutPlatform}>
       <h2>Learn More with Documentation</h2>
       <div className={styles.platform}>
         <div className={styles.subSectionName}><h3>Modules</h3></div>
-          {/* <img src="/img/harness-platform.svg" className={styles.platformIllustration} /> */}
-          <svg width="100%" height="742" viewBox="0 0 1533 742" fill="none" xmlns="http://www.w3.org/2000/svg" >
+        {/* <img src="/img/harness-platform.svg" className={styles.platformIllustration} /> */}
+        <svg width="100%" height="742" viewBox="0 0 1533 742" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.platformIllustration}>
             {/* ----- links start ----- */}
             <a href="/docs/continuous-integration">
                 <Tooltip overlay={<p className='tooltip-max-width'>Container-native CI and test optimization that takes source code to artifacts 98% faster.</p>}>
@@ -521,12 +525,12 @@ export default function LearnAboutPlatform(): JSX.Element {
                 </linearGradient>
             </defs>
         </svg>
-      </div>
+    </div>
 
-      <div className={styles.subSectionName}><h3>Platform</h3></div>
-      <ul className={styles.platformList}>
+    <div className={styles.subSectionName}><h3>Platform</h3></div>
+    <ul className={styles.platformList}>
         <li>
-          <a href="https://docs.harness.io/article/7fibxie636-projects-and-organizations" target="_blank"><img src="/img/user-group-mgmt.svg" />
+          <a href="https://docs.harness.io/article/7fibxie636-projects-and-organizations" target="_blank"><img src="/img/automated-pipeline.svg" />
           <h4>Organizations &amp; Projects</h4>
           <p>Structure your development teams &amp; applications</p></a>
         </li>
@@ -545,37 +549,44 @@ export default function LearnAboutPlatform(): JSX.Element {
           <h4>Delegates</h4>
           <p>Install, configure, secure, monitor, upgrade Delegates running on your own infrastructure</p></a>
         </li>
+    </ul>
+    {showMore && (
+      <ul className={styles.platformListMore}>
         <li>
-        <a href="https://docs.harness.io/article/6tl8zyxeol-template" target="_blank"><img src="/img/Templates.svg" />
+        <a href="https://docs.harness.io/article/6tl8zyxeol-template" target="_blank">{/* <img src="/img/Templates.svg" /> */}
           <h4>Templates</h4>
           <p>Share organizational best practices for Pipelines, Steps, Stages, Services, Infrastructure</p></a>
         </li>
         <li>
-        <a href="https://docs.harness.io/category/id0hnxv6sg-dashboards-custom" target="_blank"><img src="/img/Templates.svg" />
+        <a href="https://docs.harness.io/category/id0hnxv6sg-dashboards-custom" target="_blank">
           <h4>Dashboards &amp; Reports</h4>
           <p>Create &amp; share Dashboards as well as schedule &amp; download Reports </p></a>
         </li>
         <li>
-        <a href="https://docs.harness.io/category/zoc8fpiifm-gov-howtos" target="_blank"><img src="/img/Templates.svg" />
+        <a href="https://docs.harness.io/category/zoc8fpiifm-gov-howtos" target="_blank">
           <h4>Policy as Code</h4>
           <p>Define &amp; enforce Governance Policies</p></a>
         </li>
         <li>
-        <a href="https://docs.harness.io/article/7cude5tvzh-harness-terraform-provider" target="_blank"><img src="/img/Templates.svg" />
+        <a href="https://docs.harness.io/article/7cude5tvzh-harness-terraform-provider" target="_blank">
           <h4>Terraform Provider</h4>
           <p>Automate configuration and initial setup</p></a>
         </li>
         <li>
-        <a href="https://apidocs.harness.io/" target="_blank"><img src="/img/Templates.svg" />
+        <a href="https://apidocs.harness.io/" target="_blank">
           <h4>API Reference</h4>
           <p>Integrate with your ecosystem using API clients written in the language of your choice</p></a>
         </li>
         <li>
-        <a href="https://docs.harness.io/category/mm97945oxz-self-managed-category" target="_blank"><img src="/img/Templates.svg" />
+        <a href="https://docs.harness.io/category/mm97945oxz-self-managed-category" target="_blank">
           <h4>Self-Managed Enterprise Edition</h4>
           <p>Install, configure, secure, upgrade Harness Platform on your own Kubernetes infrastructure</p></a>
         </li>
       </ul>
+    )}
+    <div className={styles.btnShowMore}>
+        <button onClick={toggleShowMore}>See {showMore ? 'Less △' : 'All ▽'}</button>
+    </div>
     </section>
   );
 }
