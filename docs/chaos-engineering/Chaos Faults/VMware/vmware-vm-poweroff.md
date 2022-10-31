@@ -7,9 +7,8 @@ title: VMware VM-Poweroff
 - It causes VMWare VMs to Stop/Power-off before bringing them back to Powered-on state after a specified chaos duration using the VMWare APIs to start/stop the target VM.
 - It helps to check the performance of the application/process running on the VMWare VMs.
 
-:::tip
-Fault execution flow chart
-<img src="https://litmuschaos.github.io/litmus/experiments/images/vm-poweroff.png" />
+:::tip Fault execution flow chart
+![VMware VM Poweroff](./static/images/vm-poweroff.png)
 :::
 
 ## Uses
@@ -171,7 +170,7 @@ Use this sample RBAC manifest to create a chaosServiceAccount in the desired (ap
 ## Experiment Examples
 
 ### Common Experiment Tunables
-Refer the [common attributes](../../../common/common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
 
 ### Stop/Poweroff VM By MOID
 
@@ -179,7 +178,7 @@ It contains MOID of the vm instance. It can be tuned via `APP_VM_MOIDS` ENV.
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/vmware/vm-poweroff/app-vm-moid.yaml yaml)
+[embedmd]:# (./static/manifests/vm-poweroff/app-vm-moid.yaml yaml)
 ```yaml
 # power-off the VMWare VM
 apiVersion: litmuschaos.io/v1alpha1

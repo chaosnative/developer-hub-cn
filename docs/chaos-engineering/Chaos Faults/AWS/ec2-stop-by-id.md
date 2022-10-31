@@ -8,9 +8,8 @@ title: EC2 Stop By ID
 - It helps to check the performance of the application/process running on the EC2 instance.
 - When the `MANAGED_NODEGROUP` is enable then the experiment will not try to start the instance post chaos instead it will check of the addition of the new node instance to the cluster.
 
-:::tip  
-Fault execution flow chart
-<img src="https://litmuschaos.github.io/litmus/experiments/images/ec2-stop.png" />
+:::tip Fault execution flow chart
+![EC2 Stop](./static/images/ec2-stop.png)
 :::
 
 ## Uses
@@ -191,7 +190,7 @@ Use this sample RBAC manifest to create a chaosServiceAccount in the desired (ap
 
 ### Common and AWS specific tunables
 
-Refer the [common attributes](../../../common/common-tunables-for-all-experiments) and [AWS specific tunable](./aws-experiments-tunables) to tune the common tunables for all experiments and aws specific tunables.  
+Refer the [common attributes](../common-tunables-for-all-experiments) and [AWS specific tunable](./aws-experiments-tunables) to tune the common tunables for all experiments and aws specific tunables.  
 
 ### Stop Instances By ID
 
@@ -199,7 +198,7 @@ It contains comma separated list of instances IDs subjected to ec2 stop chaos. I
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/aws/ec2-stop-by-id/instance-id.yaml yaml)
+[embedmd]:# (./static/manifests/ec2-stop-by-id/instance-id.yaml yaml)
 ```yaml
 # contains the instance id, to be terminated/stopped
 apiVersion: litmuschaos.io/v1alpha1

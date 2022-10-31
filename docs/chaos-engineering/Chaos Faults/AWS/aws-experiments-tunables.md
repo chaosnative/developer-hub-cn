@@ -12,7 +12,7 @@ Use the following example to tune this:
 [embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/aws/common/managed-nodegroup.yaml yaml)
 ```yaml
 # it provided as enable if instances are part of self managed groups
-# it is applicable for [ec2-stop-by-id, ec2-stop-by-tag]
+# it is applicable for [ec2-terminate-by-id, ec2-terminate-by-tag]
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
@@ -20,9 +20,9 @@ metadata:
 spec:
   engineState: "active"
   annotationCheck: "false"
-  chaosServiceAccount: ec2-stop-by-tag-sa
+  chaosServiceAccount: ec2-terminate-by-tag-sa
   experiments:
-  - name: ec2-stop-by-tag
+  - name: ec2-terminate-by-tag
     spec:
       components:
         env:
@@ -55,9 +55,9 @@ metadata:
 spec:
   engineState: "active"
   annotationCheck: "false"
-  chaosServiceAccount: ec2-stop-by-tag-sa
+  chaosServiceAccount: ec2-terminate-by-tag-sa
   experiments:
-  - name: ec2-stop-by-tag
+  - name: ec2-terminate-by-tag
     spec:
       components:
         env:
@@ -70,5 +70,6 @@ spec:
         - name: REGION
           value: '<region for instances>'
         - name: INSTANCE_TAG
-          value: 'key:value' 
+          value: 'key:value'
+        
 ```

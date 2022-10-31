@@ -8,9 +8,8 @@ title: GCP VM Instance Stop
 - It helps to check the performance of the application/process running on the VM instance.
 - When the `MANAGED_INSTANCE_GROUP` is `enable` then the experiment will not try to start the instances post chaos, instead it will check the addition of new instances to the instance group.
 
-:::tip
-Fault execution flow chart
-<img src="https://litmuschaos.github.io/litmus/experiments/images/gcp-vm-instance-stop.png" />
+:::tip Fault execution flow chart
+![GCP VM Instance Stop](./static/images/gcp-vm-instance-stop.png)
 :::
 
 ## Uses
@@ -194,7 +193,7 @@ Use this sample RBAC manifest to create a chaosServiceAccount in the desired (ap
 ## Experiment Examples
 
 ### Common Experiment Tunables
-Refer the [common attributes](../../../common/common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
 
 ### Target GCP Instances
 It will stop all the instances with the given `VM_INSTANCE_NAMES` instance names and corresponding `ZONES` zone names in `GCP_PROJECT_ID` project. 
@@ -203,7 +202,7 @@ It will stop all the instances with the given `VM_INSTANCE_NAMES` instance names
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/gcp/gcp-vm-instance-stop/gcp-instance.yaml yaml)
+[embedmd]:# (./static/manifests/gcp-vm-instance-stop/gcp-instance.yaml yaml)
 ```yaml
 ## details of the gcp instance
 apiVersion: litmuschaos.io/v1alpha1
@@ -239,7 +238,7 @@ If vm instances belong to a managed instance group then provide the `MANAGED_INS
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/gcp/gcp-vm-instance-stop/managed-instance-group.yaml yaml)
+[embedmd]:# (./static/manifests/gcp-vm-instance-stop/managed-instance-group.yaml yaml)
 ```yaml
 ## scale up and down to maintain the available instance counts
 apiVersion: litmuschaos.io/v1alpha1
@@ -279,7 +278,7 @@ The multiple iterations of chaos can be tuned via setting `CHAOS_INTERVAL` ENV. 
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/gcp/gcp-vm-instance-stop/chaos-interval.yaml yaml)
+[embedmd]:# (./static/manifests/gcp-vm-instance-stop/chaos-interval.yaml yaml)
 ```yaml
 # defines delay between each successive iteration of the chaos
 apiVersion: litmuschaos.io/v1alpha1

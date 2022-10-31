@@ -8,9 +8,8 @@ title: Node CPU Hog
 - The CPU chaos is injected using a helper pod running the linux stress tool (a workload generator). The chaos is effected for a period equalling the `TOTAL_CHAOS_DURATION`
 Application implies services. Can be reframed as: Tests application resiliency upon replica evictions caused due to lack of CPU resources.
 
-:::tip
-Fault execution flow chart 
-<img src="https://litmuschaos.github.io/litmus/experiments/images/node-stress.png" />
+:::tip Fault execution flow chart 
+![Node CPU Hog](./static/images/node-stress.png)
 :::
 
 ## Uses
@@ -181,14 +180,14 @@ Use this sample RBAC manifest to create a chaosServiceAccount in the desired (ap
 ## Experiment Examples
 
 ### Common and Node specific tunables
-Refer the [common attributes](../../../common/common-tunables-for-all-experiments) and [Node specific tunable](./common-tunables-for-node-experiments) to tune the common tunables for all experiments and node specific tunables.  
+Refer the [common attributes](../../../common-tunables-for-all-experiments) and [Node specific tunable](./common-tunables-for-node-experiments) to tune the common tunables for all experiments and node specific tunables.  
 
 ### Node CPU Cores
 It contains number of cores of node CPU to be consumed. It can be tuned via `NODE_CPU_CORE` ENV.
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/nodes/node-cpu-hog/node-cpu-core.yaml yaml)
+[embedmd]:# (./static/manifests/node-cpu-hog/node-cpu-core.yaml yaml)
 ```yaml
 # stress the cpu of the targeted nodes
 apiVersion: litmuschaos.io/v1alpha1
@@ -217,7 +216,7 @@ It contains percentage of node CPU to be consumed. It can be tuned via `CPU_LOAD
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/nodes/node-cpu-hog/node-cpu-load.yaml yaml)
+[embedmd]:# (./static/manifests/node-cpu-hog/node-cpu-load.yaml yaml)
 ```yaml
 # stress the cpu of the targeted nodes by load percentage
 apiVersion: litmuschaos.io/v1alpha1

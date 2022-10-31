@@ -8,9 +8,8 @@ title: Pod Delete
 - It causes (forced/graceful) pod failure of specific/random replicas of an application resources.
 - It tests deployment sanity (replica availability & uninterrupted service) and recovery workflow of the application
 
-:::tip
-Fault execution flow chart
-<img src="https://litmuschaos.github.io/litmus/experiments/images/pod-delete.png" />
+:::tip Fault execution flow chart
+![Pod Delete](./static/images/pod-delete.png)
 :::
 
 ## Uses
@@ -183,7 +182,7 @@ Use this sample RBAC manifest to create a chaosServiceAccount in the desired (ap
 
 ### Common and Pod specific tunables
 
-Refer the [common attributes](../../../common/common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables. 
+Refer the [common attributes](../../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables. 
 
 ### Force Delete
 
@@ -191,7 +190,7 @@ The targeted pod can be deleted `forcefully` or `gracefully`. It can be tuned wi
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/pods/pod-delete/force.yaml yaml)
+[embedmd]:# (./static/manifests/pod-delete/force.yaml yaml)
 ```yaml
 # tune the deletion of target pods forcefully or gracefully
 apiVersion: litmuschaos.io/v1alpha1
@@ -225,7 +224,7 @@ The multiple iterations of chaos can be tuned via setting `CHAOS_INTERVAL` ENV. 
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/pods/pod-delete/chaos-interval.yaml yaml)
+[embedmd]:# (./static/manifests/pod-delete/chaos-interval.yaml yaml)
 ```yaml
 # defines delay between each successive iteration of the chaos
 apiVersion: litmuschaos.io/v1alpha1
@@ -263,7 +262,7 @@ The chaos interval can be tuned via `CHAOS_INTERVAL` ENV.
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/pods/pod-delete/randomness-interval.yaml yaml)
+[embedmd]:# (./static/manifests/pod-delete/randomness-interval.yaml yaml)
 ```yaml
 # contains random chaos interval with lower and upper bound of range i.e [l,r]
 apiVersion: litmuschaos.io/v1alpha1

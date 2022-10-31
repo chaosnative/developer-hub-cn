@@ -7,9 +7,8 @@ title: Azure Instance Stop
 - It causes PowerOff an Azure instance before bringing it back to running state after the specified chaos duration.
 - It helps to check the performance of the application/process running on the instance.
 
-:::tip
-Fault execution flow chart
-<img src="https://litmuschaos.github.io/litmus/experiments/images/azure-instance-stop.png" />
+:::tip Fault execution flow chart
+![Azure Instance Stop](./static/images/azure-instance-stop.png)
 :::
 
 ## Uses
@@ -189,7 +188,7 @@ Use this sample RBAC manifest to create a chaosServiceAccount in the desired (ap
 
 ### Common Experiment Tunables
 
-Refer the [common attributes](../../../common/common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
 
 ### Stop Instances By Name
 
@@ -197,7 +196,7 @@ It contains comma separated list of instance names subjected to instance stop ch
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/azure/azure-instance-stop/azure-instance.yaml yaml)
+[embedmd]:# (./static/manifests/azure-instance-stop/azure-instance.yaml yaml)
 ```yaml
 ## contains the azure instance details
 apiVersion: litmuschaos.io/v1alpha1
@@ -229,7 +228,7 @@ It contains comma separated list of instance names subjected to instance stop ch
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/azure/azure-instance-stop/azure-scale-set-instance.yaml yaml)
+[embedmd]:# (./static/manifests/azure-instance-stop/azure-scale-set-instance.yaml yaml)
 ```yaml
 ## contains the azure instance details for scale set instances or AKS nodes
 apiVersion: litmuschaos.io/v1alpha1
@@ -264,7 +263,7 @@ The multiple iterations of chaos can be tuned via setting `CHAOS_INTERVAL` ENV. 
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/azure/azure-instance-stop/chaos-interval.yaml yaml)
+[embedmd]:# (./static/manifests/azure-instance-stop/chaos-interval.yaml yaml)
 ```yaml
 # defines delay between each successive iteration of the chaos
 apiVersion: litmuschaos.io/v1alpha1
