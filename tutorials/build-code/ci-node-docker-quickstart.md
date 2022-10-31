@@ -1,12 +1,14 @@
 ---
 sidebar_position: 1
 description: This build automation guide walks you through building a NodeJS and Docker Application in a CI Pipeline
+keywords: [Hosted Build, Continuous Integration, Hosted, CI Tutorial]
 ---
 
 # Build Docker image of a NodeJS app
 
 ```mdx-code-block
-import KubernetesDelegateInstall from '/tutorials/shared/kubernetes-delegate-install-includes.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 ```
 
 ## Background on Continuous Integration
@@ -79,23 +81,24 @@ Simple enough locally to get your local build and packaging in. The next step is
 
 ## Your First Continuous Integration Pipeline
 
-If you took a closer look at what your machine was doing during those local builds, the machine was bogged down for a few moments. For yourself, that is fine, but imagine having to support 10’s or 100’s or even 1000’s of engineers, this process can be taxing on systems. Luckily, modern Continuous Integration Platforms are designed to scale with distributed nodes. Harness Continuous Integration is designed to scale and simplify getting your local steps externalized; this is the Continuous Integration Pipeline. Let’s enable Harness Continuous Integration to mimic your local steps and create your first CI Pipeline. Once you are done, you will have a repeatable, consistent, and distributed build process. There are a few Harness Objects to create along the way, which this guide will walk through step-by-step.
+If you took a closer look at what your machine was doing during those local builds, the machine was bogged down for a few moments. For yourself, that is fine, but imagine having to support 10’s or 100’s or even 1000’s of engineers, this process can be taxing on systems. Luckily, modern Continuous Integration Platforms are designed to scale with distributed nodes. Harness Continuous Integration is designed to scale and simplify getting your local steps externalized; this is the Continuous Integration Pipeline. Let’s enable Harness Continuous Integration to mimic your local steps and create your first CI Pipeline. Once you are done, you will have a repeatable, consistent, and distributed build process. 
 
-![Harness CI Overview](static/ci-tutorial-node-docker/harness_ci_overview.png)
+There are a few Harness Objects to create along the way, which this guide will walk through step-by-step.There are two paths to take. One path is to have Harness host all of the needed infrastructure for a distributed build. The second is to bring your own infrastructure for the distributed build. 
+
+Hosted Infrastructure:
+
+![Harness CI Hosted Overview](static/ci-tutorial-node-docker/harness_ci_hosted_infra_overview.png)
+
+Bring Your Own Infrastructure:
+
+![Harness CI Bring Your Own Overview](static/ci-tutorial-node-docker/harness_ci_your_infra_overview.png)
 
 ### Starting off with Harness
 
-Harness is a Platform, but we will focus on the Continuous integration module. First, sign up for a [Harness account to get started](https://app.harness.io/auth/#/signup/?module=ci&?utm_source=website&utm_medium=harness-developer-hub&utm_campaign=ci-plg&utm_content=get-started).
+Harness is a Platform, but we will focus on the Continuous Integration module. First, sign up for a [Harness account to get started](https://app.harness.io/auth/#/signup/?module=ci&?utm_source=website&utm_medium=harness-developer-hub&utm_campaign=ci-plg&utm_content=get-started).
 
 ![Harness Signup](static/ci-tutorial-node-docker/harness_signup.png)
 
-Your onramp and workhorse in the Harness Platform is the Harness Delegate which can run in several places. For this example, using the Harness Kubernetes Delegate is the easiest.
-
-### Wiring The Harness Kubernetes Delegate
-
-```mdx-code-block
-<KubernetesDelegateInstall />
-```
 
 ### Access To Your Sourcecode
 
@@ -129,11 +132,85 @@ Click Continue. Then click Select Repository to select the Repository that you w
 
 ![Node Docker Repo](static/ci-tutorial-node-docker/node_docker_repo.png)
 
-Select the repository, then click Create Pipeline. The step to focus on will be Build.
+Select the repository, then click Create Pipeline. The next step to focus on will be where you want to run the build by configuring the Pipeline. 
+
+```mdx-code-block
+<Tabs>
+<TabItem value="Harness Hosted Build Infrastructure">
+```
+Can leverage one of the Starter Configs or create a Starter Pipeline. In this case if leveraging the example app which is NodeJS based, leveraging the Node.js Starter Configuration works fine. 
+
+![Configure Node JS](static/ci-tutorial-node-docker/configure_nodejs.png)
+
+Click Continue to define what infrastructure to run the build on. To run on Harness Hosted Infrastructure, first change the Infrastructure to “Cloud”.
+
+![Where to Build](static/ci-tutorial-node-docker/where_to_build_cloud.png)
+
+The scaffolding will take care of the NPM install for you. End goal would be to have a published Docker Image of your artifact. Can add an additional Step to take care of the Docker Push. 
+
+
+![Add Publish](static/ci-tutorial-node-docker/add_publish.png)
+
+Select “Build and Push” image to Docker Registry.
+
+![Docker Publish Step](static/ci-tutorial-node-docker/add_docker_step.png)
+
+Next, create a new Docker Connector by clicking on + New Connector. 
+
+* Name: `my_docker_hub_account`
+
+![My Docker Hub](static/ci-tutorial-node-docker/my_docker_hub.png)
+
+Next fill out the details of your account credentials for a Docker Push. 
+
+
+* Registry URL: https://index.docker.io/v2/
+* Authentication: Username and Password
+* Provider Type: DockerHub
+* Username: `your_docker_hub_user`
+* Password: `your_docker_hub_pw`
+
+![Docker Hub Details](static/ci-tutorial-node-docker/dh_details.png)
+
+For sensitive items such as your Docker Hub password, these can be stored as a Harness Secret. 
+
+![Docker Hub Password Secret](static/ci-tutorial-node-docker/dh_pw.png)
+
+Click Save and Continue. You can run this connection directly from the Harness Platform. 
+
+![User Harness Docker](static/ci-tutorial-node-docker/connect_harness.png)
+
+Once selected, you can run a connectivity test and you are ready to provide the registry details. 
+
+* Name: docker_build_and_push
+* Docker Connector: `my_docker_hub_account`
+* Docker Repository: `<your_user>/<your_repository>`
+* Tags: cibuilt
+
+![Docker Build and Push](static/ci-tutorial-node-docker/docker_build_and_push.png)
+
+Click Apply Changes then Save. 
+
+![Save Hosted](static/ci-tutorial-node-docker/save_hosted.png)
+
+Now you are ready to run once saved. 
+
+```mdx-code-block
+</TabItem>
+<TabItem value="Self-Managed Build Infrastructure">
+```
+
+If you want to use your own self-managed build infrastructure, then you should install the [Kubernetes Delegate](../platform/install-delegate) in the Kubernetes cluster of your choice. 
+
+For the self-managed infrastructure, can leverage one of the Starter Configs or create a Starter Pipeline. In this case, can run the Starter Pipeline. 
+
+![Build Self Hosted Step](static/ci-tutorial-node-docker/self_hosted_starter.png)
+
+Click Continue to start to build out the Pipeline. 
 
 ![Build Step](static/ci-tutorial-node-docker/build_step.png)
 
-Click Continue to define what infrastructure to run the build on. With the quick start, you can leverage Harness Provided infrastructure or your own Kubernetes infrastructure. Below, will be leveraging your infrastructure.
+Click Continue to define what infrastructure to run the build on.
 
 First change the infrastructure to “Kubernetes”.
 
@@ -216,7 +293,7 @@ Click Continue and select the Harness Delegate to execute on. This will be your 
 Click Save and Continue, and the connection will validate.
 Then click Finish. Lastly, enter your Docker Repository and Tag information.
 
-- Docker Repository: _your_account/your_registry_
+- Docker Repository: `your_account/your_registry`
 - Tags: cibuilt
 
 ![Push Settings](static/ci-tutorial-node-docker/push_settings.png)
@@ -227,6 +304,10 @@ Then click “Apply Changes” and Save the Changes.
 
 With those changes saved, you are ready to execute your first CI Pipeline.
 
+```mdx-code-block
+</TabItem>
+</Tabs>
+```
 ## Running Your First CI Pipeline
 
 Executing is simple. Head back to your pipeline and click on “Run”. Unlike your local machine, where you had to wire in NPM and Docker dependencies, Harness CI will resolve these by convention.
