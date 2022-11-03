@@ -184,7 +184,7 @@ It defines the port of the targeted service that is being targeted. It can be tu
 
 Use the following example to tune this:
 
-[embedmd]:# (./static/manifests/http-chaos/target-service-port.yaml yaml)
+[embedmd]:# (./static/manifests/http-modify-response/target-service-port.yaml yaml)
 ```yaml
 ## provide the port of the targeted service
 apiVersion: litmuschaos.io/v1alpha1
@@ -195,7 +195,7 @@ spec:
   engineState: "active"
   chaosServiceAccount: litmus-admin
   experiments:
-  - name: vmware-http-latency
+  - name: vmware-http-modify-response
     spec:
       components:
         env:
@@ -206,7 +206,7 @@ spec:
 
 ### Modifying the Response Status Code
 
-[embedmd]:# (./static/manifests/http-chaos/status-code.yaml yaml)
+[embedmd]:# (./static/manifests/http-modify-response/status-code.yaml yaml)
 ```yaml
 ## provide the headers as a map
 apiVersion: litmuschaos.io/v1alpha1
@@ -243,7 +243,7 @@ spec:
 
 ### Modifying the Response Headers
 
-[embedmd]:# (./static/manifests/http-chaos/response-headers.yaml yaml)
+[embedmd]:# (./static/manifests/http-modify-response/response-headers.yaml yaml)
 ```yaml
 ## provide the headers as a map
 apiVersion: litmuschaos.io/v1alpha1
@@ -275,7 +275,7 @@ spec:
 
 ### Modifying the Request Headers
 
-[embedmd]:# (./static/manifests/http-chaos/response-headers.yaml yaml)
+[embedmd]:# (./static/manifests/http-modify-response/response-headers.yaml yaml)
 ```yaml
 ## provide the headers as a map
 apiVersion: litmuschaos.io/v1alpha1
@@ -307,7 +307,7 @@ spec:
 
 ### Modifying the Response Body
 
-[embedmd]:# (./static/manifests/http-chaos/response-body.yaml yaml)
+[embedmd]:# (./static/manifests/http-modify-response/response-body.yaml yaml)
 ```yaml
 ## provide the headers as a map
 apiVersion: litmuschaos.io/v1alpha1
@@ -339,7 +339,7 @@ It defines the port on which the proxy server will listen for requests. It can b
 
 Use the following example to tune this:
 
-[embedmd]:# (./static/manifests/http-chaos/proxy-port.yaml yaml)
+[embedmd]:# (./static/manifests/http-modify-response/proxy-port.yaml yaml)
 ```yaml
 # provide the port for proxy server
 apiVersion: litmuschaos.io/v1alpha1
@@ -350,7 +350,7 @@ spec:
   engineState: "active"
   chaosServiceAccount: litmus-admin
   experiments:
-  - name: vmware-http-latency
+  - name: vmware-http-modify-response
     spec:
       components:
         env:
@@ -369,7 +369,7 @@ Toxicity value defines the percentage of the total number of http requests to be
 
 Use the following example to tune this:
 
-[embedmd]:# (./static/manifests/http-chaos/toxicity.yaml yaml)
+[embedmd]:# (./static/manifests/http-modify-response/toxicity.yaml yaml)
 ```yaml
 ## provide the toxicity
 apiVersion: litmuschaos.io/v1alpha1
@@ -380,7 +380,7 @@ spec:
   engineState: "active"
   chaosServiceAccount: litmus-admin
   experiments:
-  - name: vmware-http-latency
+  - name: vmware-http-modify-response
     spec:
       components:
         env:
@@ -400,7 +400,7 @@ It defines the network interface to be used for the proxy. It can be tuned via `
 
 Use the following example to tune this:
 
-[embedmd]:# (./static/manifests/http-chaos/network-interface.yaml yaml)
+[embedmd]:# (./static/manifests/http-modify-response/network-interface.yaml yaml)
 ```yaml
 ## provide the network interface for proxy
 apiVersion: litmuschaos.io/v1alpha1
@@ -411,7 +411,7 @@ spec:
   engineState: "active"
   chaosServiceAccount: litmus-admin
   experiments:
-  - name: vmware-http-latency
+  - name: vmware-http-modify-response
     spec:
       components:
         env:
