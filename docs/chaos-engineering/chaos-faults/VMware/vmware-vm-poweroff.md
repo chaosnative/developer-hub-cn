@@ -115,6 +115,28 @@ It contains MOID of the vm instance. It can be tuned via `APP_VM_MOIDS` ENV.
 Use the following example to tune this:
 
 [embedmd]:# (./static/manifests/vm-poweroff/app-vm-moid.yaml yaml)
+```yaml
+# power-off the VMWare VM
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: engine-nginx
+spec:
+  engineState: "active"
+  annotationCheck: "false"
+  chaosServiceAccount: vm-poweroff-sa
+  experiments:
+  - name: vm-poweroff
+    spec:
+      components:
+        env:
+        # MOID of the VM
+        - name: APP_VM_MOIDS
+          value: 'vm-53,vm-65'
+
+        - name: TOTAL_CHAOS_DURATION
+          VALUE: '60'
+```
 
 ```yaml
 # power-off the VMWare VM
