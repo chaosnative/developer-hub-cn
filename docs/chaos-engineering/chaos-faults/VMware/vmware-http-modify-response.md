@@ -10,6 +10,10 @@ title: VMware HTTP Modify Response
 - It can test the application's resilience to error or incorrect http response body.
 - It can cause modification of headers of requests and responses of the service. This can be used to test service resilience towards incorrect or incomplete headers.s
 
+:::tip Fault execution flow chart
+![VMware HTTP Modify Response](./static/images/http-modify-response.png)
+:::
+
 ## Prerequisites
 
 :::info
@@ -159,6 +163,11 @@ You can pass the VM credentials as secrets or as an chaosengine ENV variable.
             <td> TOXICITY </td>
             <td> Percentage of HTTP requests to be affected </td>
             <td> Defaults to 100 </td>
+        </tr>
+        <tr>
+          <td> NETWORK_INTERFACE  </td>
+          <td> Network interface to be used for the proxy</td>
+          <td> Defaults to `eth0` </td>
         </tr>
     </table>
 </details>

@@ -8,6 +8,10 @@ title: VMware HTTP Reset Peer
 - It injects http reset on the service whose port is provided as TARGET_SERVICE_PORT which stops outgoing http requests by resetting the TCP connection for the requests.
 - It can test the application's resilience to lossy/flaky http connection.
 
+:::tip Fault execution flow chart
+![VMware HTTP Reset Peer](./static/images/http-reset-peer.png)
+:::
+
 ## Prerequisites
 
 :::info
@@ -120,6 +124,11 @@ You can pass the VM credentials as secrets or as an chaosengine ENV variable.
             <td> TOXICITY </td>
             <td> Percentage of HTTP requests to be affected </td>
             <td> Defaults to 100 </td>
+        </tr>
+        <tr>
+          <td> NETWORK_INTERFACE  </td>
+          <td> Network interface to be used for the proxy</td>
+          <td> Defaults to `eth0` </td>
         </tr>
     </table>
 </details>

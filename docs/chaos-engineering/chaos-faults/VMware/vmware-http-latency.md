@@ -8,6 +8,10 @@ title: VMware HTTP Latency
 - It injects http response latency on the service whose port is provided as TARGET_SERVICE_PORT by starting proxy server and then redirecting the traffic through the proxy server.
 - It can test the application's resilience to lossy/flaky http responses.
 
+:::tip Fault execution flow chart
+![VMware HTTP Latency](./static/images/http-latency.png)
+:::
+
 ## Prerequisites
 
 :::info
@@ -120,6 +124,11 @@ You can pass the VM credentials as secrets or as an chaosengine ENV variable.
             <td> TOXICITY </td>
             <td> Percentage of HTTP requests to be affected </td>
             <td> Defaults to 100 </td>
+        </tr>
+        <tr>
+          <td> NETWORK_INTERFACE  </td>
+          <td> Network interface to be used for the proxy</td>
+          <td> Defaults to `eth0` </td>
         </tr>
     </table>
 </details>
