@@ -206,6 +206,10 @@ spec:
 
 ### Modifying the Response Status Code
 
+Use this example to modify the status code of the response.
+
+***Note***: `HTTP_CHAOS_TYPE` should be provided as `status_code`
+
 [embedmd]:# (./static/manifests/http-modify-response/status-code.yaml yaml)
 ```yaml
 ## provide the headers as a map
@@ -243,6 +247,10 @@ spec:
 
 ### Modifying the Response Headers
 
+Use this example to modify the headers of the response.
+
+***Note***: `HTTP_CHAOS_TYPE` should be provided as `header`
+
 [embedmd]:# (./static/manifests/http-modify-response/response-headers.yaml yaml)
 ```yaml
 ## provide the headers as a map
@@ -275,6 +283,10 @@ spec:
 
 ### Modifying the Request Headers
 
+Use this example to modify the headers of the response.
+
+***Note***: `HTTP_CHAOS_TYPE` should be provided as `header`
+
 [embedmd]:# (./static/manifests/http-modify-response/response-headers.yaml yaml)
 ```yaml
 ## provide the headers as a map
@@ -306,6 +318,10 @@ spec:
 ```
 
 ### Modifying the Response Body
+
+Use this example to modify the body of the response.
+
+***Note***: `HTTP_CHAOS_TYPE` should be provided as `body`
 
 [embedmd]:# (./static/manifests/http-modify-response/response-body.yaml yaml)
 ```yaml
