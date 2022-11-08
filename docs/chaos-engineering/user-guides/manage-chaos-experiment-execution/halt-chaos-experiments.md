@@ -7,11 +7,11 @@ Halting the execution of a chaos experiment safeguards the target applications a
 
 To halt an experiment execution, select the experiment name from the list of experiments accessible under the **Chaos Experiments** page. Then, simply select the `🚫` icon. You'll notice that the state of the experiment will be updated to `Stopped`.
 
-![Stopped Experiment Run](./static/stopped-experiment-run.png)
+![Stopped Experiment Run](./static/halt-chaos-experiments/stopped-experiment-run.png)
 
 If you have multiple experiments under execution and you want to halt all of them at once, in the **Chaos Experiments** page select the **Stop All Experiments** button. This will bring all the currently executing experiments to a halt.
 
-![Stop All Experiments](./static/stop-all-experiments.png)
+![Stop All Experiments](./static/halt-chaos-experiments/stop-all-experiments.png)
 
 :::info
 Stopping a cron experiment also disables it so that not only will it immediately halt executing but also it won't execute as per its cron schedule thereafter.

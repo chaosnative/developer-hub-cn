@@ -3,7 +3,7 @@ title: Architecture
 sidebar_position: 1
 ---
 
-![Architecture](./static/architecture.png)
+![Architecture](./static/architecture/architecture.png)
 
 At large, Harness Chaos Engineering is split into two parts, the **Harness Control Plane** and **Chaos Infrastructures**.
 

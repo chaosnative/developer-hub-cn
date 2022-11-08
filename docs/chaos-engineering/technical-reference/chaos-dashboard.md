@@ -3,7 +3,7 @@ title: Chaos Dashboard
 sidebar_position: 8
 ---
 
-![Chaos Dashboard](./static/chaos-dashboard.png)
+![Chaos Dashboard](./static/chaos-dashboard/chaos-dashboard.png)
 
 Chaos Dashboard is the user-facing dashboard for Harness Chaos Engineering, which provides access to its different features. These features can be broadly classified into:
 1. Experiment Management
@@ -25,7 +25,7 @@ Experiment management is an umbrella term for all the actions related to a chaos
 Role Based Access Control can be enforced for the users to assign them a role, such that only the requisite resources defined under that role can be accessed by them.
 - Custom roles can be created by selectively providing access to any set of resources from the list of all available resources.
 
-![Custom Roles](./static/custom-roles.png)
+![Custom Roles](./static/chaos-dashboard/custom-roles.png)
 
 Users can also be grouped so as to provide them a common role or adding them to a common notification channel, etc.
 
