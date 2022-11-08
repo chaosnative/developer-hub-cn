@@ -38,7 +38,7 @@ In the last step, choose the **Set Fault Weight** tab. We will use the default w
 
 ![Set Fault Weight](./static/chaos-experiment-from-blank-canvas/set-fault-weight.png)
 
-## Observing Chaos Execution and Evaluating the Run
+## Observing Chaos Execution
 
 When ready, start the experiment execution by selecting **Run** on the top right corner of the screen. You'll be able to observe the experiment added to the list of chaos experiments and it should be in a `Running` status. Choose **Current Execution** to get a detailed view.
 
@@ -82,11 +82,13 @@ We can validate this behavior using the application metrics dashboard as well. T
 
 ![Application Down Dashboard](./static/chaos-experiment-from-blank-canvas/application-down-dashboard.png)
 
-This time when the experiment execution concludes, we get a resiliency score of 50%. We can also observe that the Pod Delete fault step has failed.
+## Evaluating the Experiment Run
+
+This time when the experiment execution concludes, we get a resiliency score of 50%. The Pod Delete fault has failed this time as well.
 
 ![Experiment Failed](./static/chaos-experiment-from-blank-canvas/experiment-failed.png)
 
-Before we analyze the experiment result, we can validate that the application is now again normally accessible, without any errors. This can also be validated from the Grafana dashboard where we can observe the metrics to slowly normalize as the chaos duration is now over.
+Before we analyze the experiment result, we can validate that the application is now again normally accessible, without any errors from the Grafana dashboard.
 
 ![App Metrics Normalizing](./static/chaos-experiment-from-blank-canvas/app-metrics-normalizing.png)
 

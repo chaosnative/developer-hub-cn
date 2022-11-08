@@ -20,13 +20,15 @@ Harness Chaos Engineering (HCE) helps simplify the chaos engineering practices f
 
 ![HCE Overview](./static/first-chaos/hce-overview.png)
 
-## Add a Chaos Infrastructure
+## Add a Chaos Environment
 
-Next, we need to add the infrastructure resources so that Harness can access them. More specifically, we will create a new environment such that the target infrastructure resources can be added as part of it. Go to **Environments** in sidebar menu, and choose a **New Environment**. Add environment name, and optionally a description and tags. Select the environment type, **Production** or **Non-Production**. Finally, click on **Create** to add the new environment.
+Next, we will create a new environment such that the chaos infrastructures can be added as part of it. Go to **Environments** page, and choose a **New Environment**. Add environment name, and optionally a description and tags. Select the environment type, **Production** or **Non-Production**. Finally, click on **Create** to add the new environment.
 
 ![Create New Environment](./static/first-chaos/create-new-environment.png)
 
-Once the environment is added, we can add different kinds of infrastructure to it. Here, we will add a Kubernetes infrastructure so that we can inject Kubernetes resource faults. Choose **New Chaos Infrastructure**.
+## Add a Chaos Infrastructure
+
+Once the environment is added, we can add chaos infrastructures to it. Here, we will add a Kubernetes infrastructure so that we can inject Kubernetes resource faults. Choose **New Chaos Infrastructure**.
 
 ![New Chaos Infrastructure](./static/first-chaos/new-chaos-infrastructure.png)
 
@@ -123,7 +125,7 @@ With our target application deployed, we can now create a chaos experiment. We w
 
 ![Online Boutique App Cart](./static/first-chaos/online-boutique-app-cart.png)
 
-To create the chaos experiment, go to **Chaos Experiments** in the sidebar menu and choose **New Experiment**. Then, add the experiment name and optionally a description and tags. Then, choose the target infrastructure, which we created previously. Choose **Next**. In the Experiment Builder, choose **Templates from Chaos Hubs** and select **Boutique cart delete**.
+To create the chaos experiment, go to **Chaos Experiments** page and choose **New Experiment**. Then, add the experiment name and optionally a description and tags. Then, choose the target infrastructure, which we created previously. Choose **Next**. In the Experiment Builder, choose **Templates from Chaos Hubs** and select **Boutique cart delete**.
 
 This will allow us to create our chaos experiment using a pre-defined template, which already has a pod-delete fault configured to target the Online Boutique application.
 
@@ -153,7 +155,7 @@ In the last step, choose the **Set Fault Weight** tab. Here, we can observe that
 
 ![Fault Weight](./static/first-chaos/fault-weight.png)
 
-## Observing Chaos Execution and Evaluating the Run
+## Observing Chaos Execution
 
 When ready, start the experiment execution by selecting **Run** on the top right corner of the screen. You'll be able to observe the experiment added to the list of chaos experiments and it should be in a `Running` status. Choose **Current Execution** to get a detailed view.
 
@@ -197,9 +199,9 @@ We can validate this behavior using the application metrics dashboard as well. T
 
 ![Application Down Dashboard](./static/first-chaos/application-down-dashboard.png)
 
-When the experiment execution concludes, we get a resiliency score of 50%. We can also observe that the Pod Delete fault step has failed.
+## Evaluating the Experiment Run
 
-![Experiment Failed](./static/first-chaos/experiment-failed.png)
+When the experiment execution concludes, we get a resiliency score of 0%. We can also observe that the Pod Delete fault step has failed.
 
 Before we analyze the experiment result, we can validate that the application is now again normally accessible, without any errors. This can also be validated from the Grafana dashboard where we can observe the metrics to slowly normalize as the chaos duration is now over.
 
