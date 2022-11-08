@@ -114,7 +114,7 @@ You can pass the VM credentials as secrets or as an chaosengine ENV variable.
         <tr>
             <td> HEADERS_MAP </td>
             <td> Map of headers to modify/add </td>
-            <td> Eg: \u007b`"X-Litmus-Test-Header":"X-Litmus-Test-Value"`\u007d. To remove a header, just set the value to ""; Eg: \u007b"X-Litmus-Test-Header": ""\u007d </td>
+            <td> Eg: &#123;"X-Litmus-Test-Header":"X-Litmus-Test-Value"&#125;. To remove a header, just set the value to ""; Eg: &#123;"X-Litmus-Test-Header": ""&#125; </td>
         </tr>
         <tr>
             <td> HEADER_MODE </td>
