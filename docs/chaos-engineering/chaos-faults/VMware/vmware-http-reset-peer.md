@@ -9,7 +9,7 @@ title: VMware HTTP Reset Peer
 - It can test the application's resilience to lossy/flaky http connection.
 
 :::tip Fault execution flow chart
-![VMware HTTP Reset Peer](./static/images/http-reset-peer.png)
+![VMware HTTP Reset Peer](./static/images/vmware-http-reset-peer.png)
 :::
 
 ## Prerequisites
