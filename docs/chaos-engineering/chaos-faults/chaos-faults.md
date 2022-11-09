@@ -105,12 +105,12 @@ Following Platform Chaos faults are available:
   <tr>
     <td>VM Poweroff</td>
     <td>Poweroff VMware VMs using the MOIDs</td>
-    <td><a href="/docs/chaos-engineering/chaos-faults/VMware/vmware-vmpoweroff">vmware-vmpoweroff</a></td>
+    <td><a href="/docs/chaos-engineering/chaos-faults/vmware/vmware-vmpoweroff">vmware-vmpoweroff</a></td>
   </tr>
   <tr>
     <td>VMWare Network Loss</td>
     <td>Injects network loss on the target VM(s)</td>
-    <td><a href="/docs/chaos-engineering/chaos-faults/VMware/vmware-network-loss">vmware-network-loss</a></td>
+    <td><a href="/docs/chaos-engineering/chaos-faults/vmware/vmware-network-loss">vmware-network-loss</a></td>
   </tr>
   <tr>
     <td>VMWare Network Latency</td>
