@@ -28,11 +28,7 @@ Faults that apply to generic Kubernetes resources are classified into this categ
   <tr>
     <td>Pod Delete</td>
     <td>Deletes the application pods </td>
-<<<<<<< HEAD
-    <td><a href="/docs/chaos-engineering/chaos-faults/Kubernetes/Generic/Pod/pod-delete">pod-delete</a></td>
-=======
     <td><a href="/docs/chaos-engineering/chaos-faults/kubernetes/pod/pod-delete">pod-delete</a></td>
->>>>>>> 6c14873b0bba10dfe5ab13594ebdc87a755a7a1d
   </tr>
 </table>
 
@@ -47,11 +43,7 @@ Faults that apply to generic Kubernetes resources are classified into this categ
   <tr>
     <td>Node CPU Hog</td>
     <td>Exhaust CPU resources on the Kubernetes Node</td>
-<<<<<<< HEAD
-    <td><a href="/docs/chaos-engineering/chaos-faults/Kubernetes/Generic/Node/node-cpu-hog">node-cpu-hog</a></td>
-=======
     <td><a href="/docs/chaos-engineering/chaos-faults/kubernetes/node/node-cpu-hog">node-cpu-hog</a></td>
->>>>>>> 6c14873b0bba10dfe5ab13594ebdc87a755a7a1d
   </tr>
 </table>
 
