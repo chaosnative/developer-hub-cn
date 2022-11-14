@@ -17,7 +17,6 @@ title: EC2 HTTP Reset Peer
 :::info
 
 - Ensure that Kubernetes Version >= 1.17
-- Ensure that the <code>EC2-http-latency</code> experiment resource is available in the cluster by executing <code>kubectl get chaosexperiments</code> in the desired namespace.
 
 **AWS EC2 Access Requirement:**
 
@@ -119,7 +118,7 @@ You can pass the VM credentials as secrets or as an chaosengine ENV variable.
         </tr>
         <tr>
             <td> INSTALL_DEPENDENCY </td>
-            <td> Whether to install the dependancy to run the experiment </td>
+            <td> Whether to install the dependency to run the experiment </td>
             <td> If the dependency already exists, you can turn it off. Defaults to True.</td>
         </tr>
         <tr>
@@ -203,7 +202,7 @@ spec:
 
 ### RESET TIMEOUT
 
-It defines the reset timeout value to be added to the http request. It can be tuned via RESET_TIMEOUT ENV.
+It defines the reset timeout value to be added to the http request. It can be tuned via `RESET_TIMEOUT` ENV.
 
 Use the following example to tune this:
 

@@ -7,10 +7,10 @@ title: EC2 Stop By ID
 
 - It causes stopping of an EC2 instance using the provided instance ID or list of instance IDs before bringing it back to running state after the specified chaos duration.
 - It helps to check the performance of the application/process running on the EC2 instance.
-- When the `MANAGED_NODEGROUP` is enable then the experiment will not try to start the instance post chaos instead it will check of the addition of the new node instance to the cluster.
+- When the `MANAGED_NODEGROUP` is enabled then the experiment will not try to start the instance post chaos instead it will check of the addition of the new node instance to the cluster.
 
 :::tip Fault execution flow chart
-![EC2 Stop](./static/images/ec2-stop.png)
+![EC2 Stop By ID](./static/images/ec2-stop.png)
 :::
 
 ## Uses
@@ -27,6 +27,9 @@ Coming soon.
 :::info
 
 - Ensure that Kubernetes Version >= 1.17
+
+**AWS EC2 Access Requirement:**
+
 - Ensure that you have sufficient AWS access to stop and start an EC2 instance.
 - Ensure to create a Kubernetes secret having the AWS access configuration(key) in the `CHAOS_NAMESPACE`. A sample secret file looks like:
 
@@ -77,7 +80,7 @@ If the target EC2 instance is a part of a self-managed nodegroup then make sure 
       </tr>
       <tr>
         <td> REGION </td>
-        <td> The region name of the target instace</td>
+        <td> The region name of the target instance</td>
         <td> </td>
       </tr>
     </table>
@@ -138,7 +141,7 @@ metadata:
 spec:
   engineState: "active"
   annotationCheck: "false"
-  chaosServiceAccount: ec2-terminate-by-id-sa
+  chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-terminate-by-id
     spec:
@@ -149,7 +152,7 @@ spec:
           value: 'instance-1'
         # region for the ec2 instance
         - name: REGION
-          value: '<region for EC2_INSTANCE_ID>'
+          value: 'us-east-1'
         - name: TOTAL_CHAOS_DURATION
           VALUE: '60'
 ```
