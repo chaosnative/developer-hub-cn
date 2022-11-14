@@ -9,11 +9,12 @@ title: Node Memory Hog
 - The Memory chaos is injected using a helper pod running the linux stress-ng tool (a workload generator)- The chaos is effected for a period equalling the TOTAL_CHAOS_DURATION and up to <code>MEMORY_CONSUMPTION_PERCENTAGE</code> (out of 100) or <code>MEMORY_CONSUMPTION_MEBIBYTES</code> (in Mebibytes out of total available memory).
 - Application implies services. Can be reframed as: Tests application resiliency upon replica evictions caused due to lack of Memory resources.
 
-:::tip Fault execution flow chart 
+:::tip Fault execution flow chart
 ![Node Memory Hog](./static/images/node-stress.png)
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -22,13 +23,15 @@ Coming soon.
 </details>
 
 ## Default Validations
+
 :::note
 The target nodes should be in ready state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -78,7 +81,7 @@ The target nodes should be in ready state before and after chaos injection.
         <td> MEMORY_CONSUMPTION_MEBIBYTES </td>
         <td> The size in Mebibytes of total available memory. When using this we need to keep <code>MEMORY_CONSUMPTION_PERCENTAGE</code> empty as the percentage have more precedence</td>
         <td> Eg. 256 </td>
-      </tr>  
+      </tr>
       <tr>
         <td> NUMBER_OF_WORKERS </td>
         <td> It is the number of VM workers involved in IO disk stress </td>
@@ -93,7 +96,7 @@ The target nodes should be in ready state before and after chaos injection.
         <td> NODES_AFFECTED_PERC </td>
         <td> The Percentage of total nodes to target </td>
         <td> Defaults to 0 (corresponds to 1 node), provide numeric value only </td>
-      </tr> 
+      </tr>
       <tr>
         <td> SEQUENCE </td>
         <td> It defines sequence of chaos execution for multiple target pods </td>
@@ -103,12 +106,14 @@ The target nodes should be in ready state before and after chaos injection.
 </details>
 
 ## Experiment Examples
-### Common and Node specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Node specific tunable](./common-tunables-for-node-experiments) to tune the common tunables for all experiments and node specific tunables.  
+
+### Common and Node specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Node specific tunable](./common-Tuneable-for-node-experiments) to tune the common Tuneable for all experiments and node specific Tuneable.
 
 ### Memory Consumption Percentage
 
-It stresses the `MEMORY_CONSUMPTION_PERCENTAGE` percentage of total node capacity of the targeted node. 
+It stresses the `MEMORY_CONSUMPTION_PERCENTAGE` percentage of total node capacity of the targeted node.
 
 Use the following example to tune this:
 
@@ -139,7 +144,7 @@ spec:
 
 ### Memory Consumption Mebibytes
 
-It stresses the `MEMORY_CONSUMPTION_MEBIBYTES` MiBi of the memory of the targeted node. 
+It stresses the `MEMORY_CONSUMPTION_MEBIBYTES` MiBi of the memory of the targeted node.
 It is mutually exclusive with the `MEMORY_CONSUMPTION_PERCENTAGE` ENV. If `MEMORY_CONSUMPTION_PERCENTAGE` ENV is set then it will use the percentage for the stress otherwise, it will stress the IO based on `MEMORY_CONSUMPTION_MEBIBYTES` ENV.
 
 Use the following example to tune this:
@@ -193,7 +198,7 @@ spec:
         env:
         # total number of workers involved in stress
         - name: NUMBER_OF_WORKERS
-          value: '1' 
+          value: '1'
         - name: TOTAL_CHAOS_DURATION
           VALUE: '60'
 ```

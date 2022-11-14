@@ -4,15 +4,17 @@ id: node-io-stress
 ---
 
 ## Introduction
+
 - This experiment causes io stress on the Kubernetes node. The experiment aims to verify the resiliency of applications that share this disk resource for ephemeral or persistent storage purposes.
 - The amount of io stress can be either specifed as the size in percentage of the total free space on the file system or simply in Gigabytes(GB). When provided both it will execute with the utilization percentage specified and non of them are provided it will execute with default value of 10%.
 - It tests application resiliency upon replica evictions caused due IO stress on the available Disk space.
 
-:::tip Fault execution flow chart 
+:::tip Fault execution flow chart
 ![Node CPU Hog](./static/images/node-stress.png)
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -21,18 +23,23 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
+
 :::
 
 ## Default Validations
+
 :::note
 The target nodes should be in ready state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -77,17 +84,17 @@ The target nodes should be in ready state before and after chaos injection.
         <td> CPU </td>
         <td> Number of core of CPU to be used </td>
         <td> Defaults to 1 </td>
-      </tr>    
+      </tr>
       <tr>
         <td> NUMBER_OF_WORKERS </td>
         <td> It is the number of IO workers involved in IO disk stress </td>
         <td> Defaults to 4 </td>
-      </tr> 
+      </tr>
       <tr>
         <td> VM_WORKERS </td>
         <td> It is the number vm workers involved in IO disk stress </td>
         <td> Defaults to 1 </td>
-      </tr>     
+      </tr>
       <tr>
         <td> LIB </td>
         <td> The chaos lib used to inject the chaos </td>
@@ -107,7 +114,7 @@ The target nodes should be in ready state before and after chaos injection.
         <td> NODES_AFFECTED_PERC </td>
         <td> The Percentage of total nodes to target  </td>
         <td> Defaults to 0 (corresponds to 1 node), provide numeric value only </td>
-      </tr> 
+      </tr>
       <tr>
         <td> SEQUENCE </td>
         <td> It defines sequence of chaos execution for multiple target pods </td>
@@ -118,18 +125,19 @@ The target nodes should be in ready state before and after chaos injection.
 
 ## Experiment Examples
 
-### Common and Node specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Node specific tunable](./common-tunables-for-node-experiments) to tune the common tunables for all experiments and node specific tunables.
+### Common and Node specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Node specific tunable](./common-Tuneable-for-node-experiments) to tune the common Tuneable for all experiments and node specific Tuneable.
 
 ### Filesystem Utilization Percentage
 
-It stresses the `FILESYSTEM_UTILIZATION_PERCENTAGE` percentage of total free space available in the node. 
+It stresses the `FILESYSTEM_UTILIZATION_PERCENTAGE` percentage of total free space available in the node.
 
 Use the following example to tune this:
 
 [embedmd]:# (./static/manifests/node-io-stress/filesystem-utilization-percentage.yaml yaml)
 ```yaml
-# stress the i/o of the targeted node with FILESYSTEM_UTILIZATION_PERCENTAGE of total free space 
+# stress the i/o of the targeted node with FILESYSTEM_UTILIZATION_PERCENTAGE of total free space
 # it is mutually exclusive with the FILESYSTEM_UTILIZATION_BYTES.
 # if both are provided then it will use FILESYSTEM_UTILIZATION_PERCENTAGE for stress
 apiVersion: litmuschaos.io/v1alpha1
@@ -154,7 +162,7 @@ spec:
 
 ### Filesystem Utilization Bytes
 
-It stresses the `FILESYSTEM_UTILIZATION_BYTES` GB of the i/o of the targeted node. 
+It stresses the `FILESYSTEM_UTILIZATION_BYTES` GB of the i/o of the targeted node.
 It is mutually exclusive with the `FILESYSTEM_UTILIZATION_PERCENTAGE` ENV. If `FILESYSTEM_UTILIZATION_PERCENTAGE` ENV is set then it will use the percentage for the stress otherwise, it will stress the i/o based on `FILESYSTEM_UTILIZATION_BYTES` ENV.
 
 Use the following example to tune this:
@@ -208,14 +216,14 @@ spec:
         env:
         # number of cpu cores to be stressed
         - name: CPU
-          value: '1' 
+          value: '1'
         - name: TOTAL_CHAOS_DURATION
           VALUE: '60'
 ```
 
 ### Workers For Stress
 
-The i/o and VM workers count for the stress can be tuned with `NUMBER_OF_WORKERS` and `VM_WORKERS` ENV respectively. 
+The i/o and VM workers count for the stress can be tuned with `NUMBER_OF_WORKERS` and `VM_WORKERS` ENV respectively.
 
 Use the following example to tune this:
 
@@ -237,7 +245,7 @@ spec:
         env:
         # total number of io workers involved in stress
         - name: NUMBER_OF_WORKERS
-          value: '4' 
+          value: '4'
           # total number of vm workers involved in stress
         - name: VM_WORKERS
           value: '1'

@@ -1,11 +1,10 @@
-# detach multiple azure disks by their names 
+# detach multiple azure disks by their names
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: azure-disk-loss

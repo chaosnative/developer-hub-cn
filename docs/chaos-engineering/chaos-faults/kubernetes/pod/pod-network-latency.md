@@ -4,6 +4,7 @@ title: Pod Network Latency
 ---
 
 ## Introduction
+
 - It injects latency on the specified container by starting a traffic control (tc) process with netem rules to add egress delays.
 - It can test the application's resilience to lossy/flaky network.
 
@@ -12,10 +13,11 @@ title: Pod Network Latency
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
-The experiment causes network degradation without the pod being marked unhealthy/unworthy of traffic by kube-proxy (unless you have a liveness probe of sorts that measures latency and restarts/crashes the container). The idea of this experiment is to simulate issues within your pod network OR microservice communication across services in different availability zones/regions etc. 
+The experiment causes network degradation without the pod being marked unhealthy/unworthy of traffic by kube-proxy (unless you have a liveness probe of sorts that measures latency and restarts/crashes the container). The idea of this experiment is to simulate issues within your pod network OR microservice communication across services in different availability zones/regions etc.
 
 Mitigation (in this case keep the timeout i.e., access latency low) could be via some middleware that can switch traffic based on some SLOs/perf parameters. If such an arrangement is not available the next best thing would be to verify if such a degradation is highlighted via notification/alerts etc,. so the admin/SRE has the opportunity to investigate and fix things. Another utility of the test would be to see what the extent of impact caused to the end-user OR the last point in the app stack on account of degradation in access to a downstream/dependent microservice. Whether it is acceptable OR breaks the system to an unacceptable degree. The experiment provides DESTINATION_IPS or DESTINATION_HOSTS so that you can control the chaos against specific services within or outside the cluster.
 
@@ -24,18 +26,22 @@ The applications may stall or get corrupted while they wait endlessly for a pack
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
 :::
 
 ## Default Validations
+
 :::note
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Optional Fields</h2>
     <table>
       <tr>
@@ -62,7 +68,7 @@ The application pods should be in running state before and after chaos injection
         <td> JITTER </td>
         <td> The network jitter value in ms </td>
         <td> Default 0, provide numeric value only </td>
-      </tr> 
+      </tr>
       <tr>
         <td> CONTAINER_RUNTIME </td>
         <td> container runtime interface for the cluster</td>
@@ -82,22 +88,22 @@ The application pods should be in running state before and after chaos injection
         <td> TARGET_PODS </td>
         <td> Comma separated list of application pod name subjected to pod network corruption chaos</td>
         <td> If not provided, it will select target pods randomly based on provided appLabels</td>
-      </tr> 
+      </tr>
       <tr>
         <td> DESTINATION_IPS </td>
         <td> IP addresses of the services or pods or the CIDR blocks(range of IPs), the accessibility to which is impacted </td>
         <td> comma separated IP(S) or CIDR(S) can be provided. if not provided, it will induce network chaos for all ips/destinations</td>
-      </tr>  
+      </tr>
       <tr>
         <td> DESTINATION_HOSTS </td>
         <td> DNS Names/FQDN names of the services, the accessibility to which, is impacted </td>
         <td> if not provided, it will induce network chaos for all ips/destinations or DESTINATION_IPS if already defined</td>
-      </tr>      
+      </tr>
       <tr>
         <td> PODS_AFFECTED_PERC </td>
         <td> The Percentage of total pods to target  </td>
         <td> Defaults to 0 (corresponds to 1 replica), provide numeric value only </td>
-      </tr> 
+      </tr>
       <tr>
         <td> LIB </td>
         <td> The chaos lib used to inject the chaos </td>
@@ -128,18 +134,19 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables.
+### Common and Pod specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable.
 
 ### Network Latency
 
-It defines the network latency(in ms) to be injected in the targeted application. It can be tuned via `NETWORK_LATENCY` ENV. 
+It defines the network latency(in ms) to be injected in the targeted application. It can be tuned via `NETWORK_LATENCY` ENV.
 
 Use the following example to tune this:
 
 [embedmd]:# (./static/manifests/pod-network-latency/network-latency.yaml yaml)
 ```yaml
-# it injects network-latency for the egress traffic
+# it inject the network-latency for the ingrees and egress traffic
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
@@ -175,7 +182,7 @@ Use the following example to tune this:
 
 [embedmd]:# (./static/manifests/pod-network-latency/destination-ips-and-hosts.yaml yaml)
 ```yaml
-# it injects the chaos for the egress traffic for specific ips/hosts
+# it inject the chaos for the ingrees and egress traffic for specific ips/hosts
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
@@ -229,7 +236,7 @@ spec:
     spec:
       components:
         env:
-        # name of the network interface 
+        # name of the network interface
         - name: NETWORK_INTERFACE
           value: 'eth0'
         - name: TOTAL_CHAOS_DURATION
@@ -262,7 +269,7 @@ spec:
     spec:
       components:
         env:
-        # value of the network latency jitter (in ms) 
+        # value of the network latency jitter (in ms)
         - name: JITTER
           value: '200'
 ```

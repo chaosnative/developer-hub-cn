@@ -16,7 +16,7 @@ spec:
     spec:
       components:
         env:
-        # number of io workers 
+        # number of io workers
         - name: NUMBER_OF_WORKERS
           value: '4'
         - name: TOTAL_CHAOS_DURATION

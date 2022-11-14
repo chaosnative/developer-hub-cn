@@ -60,10 +60,10 @@ stringData:
 
 :::
 
-## Experiment tunables
+## Experiment Tuneable
 
 <details>
-    <summary>Check the experiment tunables</summary>
+    <summary>Check the experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
         <tr>
@@ -134,9 +134,9 @@ stringData:
 
 ## Experiment Examples
 
-### Common Experiment Tunables
+### Common Experiment Tuneable
 
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### CPU CORE
 
@@ -153,7 +153,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-cpu-hog
@@ -185,7 +184,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-cpu-hog
@@ -217,7 +215,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-cpu-hog
@@ -247,7 +244,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-cpu-hog

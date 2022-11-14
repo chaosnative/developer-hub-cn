@@ -14,6 +14,6 @@ spec:
         env:
         # total number of workers involved in stress
         - name: NUMBER_OF_WORKERS
-          value: '1' 
+          value: '1'
         - name: TOTAL_CHAOS_DURATION
           VALUE: '60'

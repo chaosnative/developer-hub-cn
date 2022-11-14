@@ -1,7 +1,7 @@
 ---
-title: Common Pod Experiment Tunables
+title: Common Pod Experiment Tuneable
 ---
-Experiment tunables which are common for all pod-level experiments. These tunables can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
+Experiment Tuneable which are common for all pod-level experiments. These Tuneable can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
 
 ### Target Specific Pods
 
@@ -23,7 +23,7 @@ spec:
     appns: "default"
     applabel: "app=nginx"
     appkind: "deployment"
-  chaosServiceAccount: litmus-admin
+  chaosServiceAccount: pod-delete-sa
   experiments:
   - name: pod-delete
     spec:
@@ -42,7 +42,7 @@ It defines the percentage of pods subjected to chaos with matching labels provid
 
 Use the following example to tune this:
 
-[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmusThe target pods are selected that resides on node with given node label/master/mkdocs/docs/experiments/categories/pods/common/pod-affected-percentage.yaml yaml)
+[embedmd]:# (https://raw.githubusercontent.com/litmuschaos/litmus/master/mkdocs/docs/experiments/categories/pods/common/pod-affected-percentage.yaml yaml)
 ```yaml
 ## it contains percentage of application pods to be targeted with matching labels or names in the application namespace
 ## supported for all pod-level experiment expect pod-autoscaler
@@ -57,7 +57,7 @@ spec:
     appns: "default"
     applabel: "app=nginx"
     appkind: "deployment"
-  chaosServiceAccount: litmus-admin
+  chaosServiceAccount: pod-delete-sa
   experiments:
   - name: pod-delete
     spec:
@@ -91,7 +91,7 @@ spec:
     appns: "default"
     applabel: "app=nginx"
     appkind: "deployment"
-  chaosServiceAccount: litmus-admin
+  chaosServiceAccount: pod-delete-sa
   experiments:
   - name: pod-delete
     spec:
@@ -124,7 +124,7 @@ spec:
     appns: "default"
     applabel: "app=nginx"
     appkind: "deployment"
-  chaosServiceAccount: litmus-admin
+  chaosServiceAccount: pod-delete-sa
   experiments:
   - name: pod-delete
     spec:
@@ -194,7 +194,7 @@ spec:
     appns: "default"
     applabel: "app=nginx"
     appkind: "deployment"
-  chaosServiceAccount: litmus-admin
+  chaosServiceAccount: pod-delete-sa
   experiments:
   - name: pod-delete
     spec:

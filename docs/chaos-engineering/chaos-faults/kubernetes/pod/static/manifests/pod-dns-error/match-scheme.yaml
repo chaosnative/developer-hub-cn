@@ -18,6 +18,6 @@ spec:
         env:
         ## it supports 'exact' and 'substring' values
         - name: MATCH_SCHEME
-          value: 'exact' 
+          value: 'exact'
         - name: TOTAL_CHAOS_DURATION
           value: '60'

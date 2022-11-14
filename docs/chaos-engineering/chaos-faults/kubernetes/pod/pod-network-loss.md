@@ -3,6 +3,7 @@ id: pod-network-loss
 title: Pod Network Loss
 ---
 ## Introduction
+
 - It injects packet loss on the specified container by starting a traffic control (tc) process with netem rules to add egress/ingress loss.
 - It can test the application's resilience to lossy/flaky network.
 
@@ -11,6 +12,7 @@ title: Pod Network Loss
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -19,18 +21,22 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
 :::
 
 ## Default Validations
+
 :::note
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Optional Fields</h2>
     <table>
       <tr>
@@ -74,22 +80,22 @@ The application pods should be in running state before and after chaos injection
         <td> TARGET_PODS </td>
         <td> Comma separated list of application pod name subjected to pod network corruption chaos</td>
         <td> If not provided, it will select target pods randomly based on provided appLabels</td>
-      </tr> 
+      </tr>
       <tr>
         <td> DESTINATION_IPS </td>
         <td> IP addresses of the services or pods or the CIDR blocks(range of IPs), the accessibility to which is impacted </td>
         <td> comma separated IP(S) or CIDR(S) can be provided. if not provided, it will induce network chaos for all ips/destinations</td>
-      </tr>  
+      </tr>
       <tr>
         <td> DESTINATION_HOSTS </td>
         <td> DNS Names/FQDN names of the services, the accessibility to which, is impacted </td>
         <td> if not provided, it will induce network chaos for all ips/destinations or <code>DESTINATION_IPS</code> if already defined</td>
-      </tr>      
+      </tr>
       <tr>
         <td> PODS_AFFECTED_PERC </td>
         <td> The Percentage of total pods to target  </td>
         <td> Defaults to 0 (corresponds to 1 replica), provide numeric value only </td>
-      </tr> 
+      </tr>
     <tr>
         <td> LIB </td>
         <td> The chaos lib used to inject the chaos </td>
@@ -120,18 +126,19 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables.
+### Common and Pod specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable.
 
 ### Network Packet Loss
 
-It defines the network packet loss percentage to be injected in the targeted application. It can be tuned via `NETWORK_PACKET_LOSS_PERCENTAGE` ENV. 
+It defines the network packet loss percentage to be injected in the targeted application. It can be tuned via `NETWORK_PACKET_LOSS_PERCENTAGE` ENV.
 
 Use the following example to tune this:
 
 [embedmd]:# (./static/manifests/pod-network-loss/network-loss.yaml yaml)
 ```yaml
-# it injects network-loss for the egress traffic
+# it inject the network-loss for the ingrees and egress traffic
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
@@ -155,6 +162,7 @@ spec:
         - name: TOTAL_CHAOS_DURATION
           value: '60'
 ```
+
 ### Destination IPs And Destination Hosts
 
 The network experiments interrupt traffic for all the IPs/hosts by default. The interruption of specific IPs/Hosts can be tuned via `DESTINATION_IPS` and `DESTINATION_HOSTS` ENV.
@@ -166,7 +174,7 @@ Use the following example to tune this:
 
 [embedmd]:# (./static/manifests/pod-network-loss/destination-ips-and-hosts.yaml yaml)
 ```yaml
-# it injects the chaos for the egress traffic for specific ips/hosts
+# it inject the chaos for the ingrees and egress traffic for specific ips/hosts
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
@@ -220,7 +228,7 @@ spec:
     spec:
       components:
         env:
-        # name of the network interface 
+        # name of the network interface
         - name: NETWORK_INTERFACE
           value: 'eth0'
         - name: TOTAL_CHAOS_DURATION

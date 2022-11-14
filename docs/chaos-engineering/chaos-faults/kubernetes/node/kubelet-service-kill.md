@@ -4,15 +4,17 @@ title: Kubelet Service Kill
 ---
 
 ## Introduction
+
 - This experiment Causes the application to become unreachable on account of node turning unschedulable (NotReady) due to kubelet service kill.
 - The kubelet service has been stopped/killed on a node to make it unschedulable for a certain duration i.e `TOTAL_CHAOS_DURATION`. The application node should be healthy after the chaos injection and the services should be re-accessible.
 - The application implies services. Can be reframed as: Test application resiliency upon replica getting unreachable caused due to kubelet service down.
 
-:::tip Fault execution flow chart 
+:::tip Fault execution flow chart
 ![Kubelet Service Kill](./static/images/svc-kill.png)
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -21,7 +23,9 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
 - Ensure that the node specified in the experiment ENV variable <code>TARGET_NODE</code> (the node for which docker service need to be killed) should be cordoned before execution of the chaos experiment to ensure that the experiment resources are not scheduled on it or subjected to eviction. This can be achieved with the following steps:
   - Get node names against the applications pods: <code>kubectl get pods -o wide</code>
@@ -29,13 +33,15 @@ Coming soon.
 :::
 
 ## Default Validations
+
 :::note
 The target nodes should be in ready state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -75,7 +81,7 @@ The target nodes should be in ready state before and after chaos injection.
         <td> LIB_IMAGE </td>
         <td> The lib image used to inject kubelet kill chaos the image should have systemd installed in it. </td>
         <td> Defaults to <code>ubuntu:16.04</code> </td>
-      </tr>  
+      </tr>
       <tr>
         <td> RAMP_TIME </td>
         <td> Period to wait before injection of chaos in sec </td>
@@ -86,8 +92,9 @@ The target nodes should be in ready state before and after chaos injection.
 
 ## Experiment Examples
 
-### Common and Node specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Node specific tunable](./common-tunables-for-node-experiments) to tune the common tunables for all experiments and node specific tunables.
+### Common and Node specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Node specific tunable](./common-Tuneable-for-node-experiments) to tune the common Tuneable for all experiments and node specific Tuneable.
 
 ### Kill Kubelet Service
 

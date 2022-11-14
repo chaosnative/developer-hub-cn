@@ -4,6 +4,7 @@ title: Pod Autoscaler
 ---
 
 ## Introduction
+
 - The experiment aims to check the ability of nodes to accommodate the number of replicas a given application pod.
 
 - This experiment can be used for other scenarios as well, such as for checking the Node auto-scaling feature. For example, check if the pods are successfully rescheduled within a specified period in cases where the existing nodes are already running at the specified limits.
@@ -13,6 +14,7 @@ title: Pod Autoscaler
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -21,18 +23,22 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
 :::
 
 ## Default Validations
+
 :::note
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Optional Fields</h2>
     <table>
       <tr>
@@ -73,8 +79,9 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables.
+### Common and Pod specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable.
 
 ### Replica counts
 
@@ -84,7 +91,7 @@ Use the following example to tune this:
 
 [embedmd]:# (./static/manifests/pod-autoscaler/replica-count.yaml yaml)
 ```yaml
-# provide the number of replicas 
+# provide the number of replicas
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:

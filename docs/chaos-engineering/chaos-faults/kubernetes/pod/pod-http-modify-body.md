@@ -4,6 +4,7 @@ title: Pod HTTP Modify Body
 ---
 
 ## Introduction
+
 - It injects http modify body chaos on the service whose port is provided as `TARGET_SERVICE_PORT` by starting proxy server and then redirecting the traffic through the proxy server.
 - Can be used to overwrite the http response body by providing the new body value as `RESPONSE_BODY`.
 - It can test the application's resilience to error or incorrect http response body.
@@ -13,6 +14,7 @@ title: Pod HTTP Modify Body
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -21,18 +23,22 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.17.
 :::
 
 ## Default Validations
+
 :::note
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -128,8 +134,9 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables.
+### Common and Pod specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable.
 
 ### Target Service Port
 
@@ -164,6 +171,7 @@ spec:
         - name: RESPONSE_BODY
           value: '2000'
 ```
+
 ### Proxy Port
 
 It defines the port on which the proxy server will listen for requests. It can be tuned via `PROXY_PORT` ENV.
