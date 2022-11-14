@@ -1,7 +1,7 @@
 ---
-title: Common Node Experiment Tuneable
+title: Common Node Experiment Tunables
 ---
-Experiment Tuneable which are common for all the node experiments. These Tuneable can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
+Experiment Tunables which are common for all the node experiments. These Tunables can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
 
 ### Target Single Node
 

@@ -1,7 +1,7 @@
 ---
-title: Common Pod Experiment Tuneable
+title: Common Pod Experiment Tunables
 ---
-Experiment Tuneable which are common for all pod-level experiments. These Tuneable can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
+Experiment Tunables which are common for all pod-level experiments. These Tunables can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
 
 ### Target Specific Pods
 

@@ -59,10 +59,10 @@ Coming soon.
 The target nodes should be in ready state before and after chaos injection.
 :::
 
-## Experiment Tuneable
+## Experiment Tunables
 
 <details>
-    <summary>Check the Experiment Tuneable</summary>
+    <summary>Check the Experiment Tunables</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -128,9 +128,9 @@ The target nodes should be in ready state before and after chaos injection.
 
 ## Experiment Examples
 
-### Common and Node specific Tuneable
+### Common and Node specific Tunables
 
-Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Node specific tunable](./common-Tuneable-for-node-experiments) to tune the common Tuneable for all experiments and node specific Tuneable.
+Refer to the [common attributes](../../common-tunables-for-all-experiments) and [Node specific tunable](./common-tunables-for-node-experiments) to tune the common tunables for all experiments and node specific Tunables.
 
 ### Reboot Command
 

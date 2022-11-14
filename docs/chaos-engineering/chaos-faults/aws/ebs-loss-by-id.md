@@ -56,10 +56,10 @@ stringData:
 
 :::
 
-## Experiment Tuneable
+## Experiment Tunables
 
 <details>
-    <summary>Check the Experiment Tuneable</summary>
+    <summary>Check the Experiment Tunables</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -110,13 +110,13 @@ stringData:
 
 ## Experiment Examples
 
-### Common and AWS-specific Tuneable
+### Common and AWS-specific Tunables
 
-Refer to the [common [attributes](../common-Tuneable-for-all-experiments) and AWS-specific [tuneable](./aws-experiments-Tuneable) to tune the common Tuneable for all experiments and AWS-specific Tuneable.
+Refer to the [common [attributes](../common-tunables-for-all-experiments) and AWS-specific [Tunables](./aws-experiments-tunables) to tune the common tunables for all experiments and AWS-specific tunables.
 
 ### Detach Volumes By ID
 
-It contains comma separate list of volume IDs subjected to EBS detach chaos. It can be tuned via `EBS_VOLUME_ID` ENV.
+It contains comma separated list of volume IDs subjected to EBS detach chaos. It can be tuned via `EBS_VOLUME_ID` ENV.
 
 Use the following example to tune this:
 

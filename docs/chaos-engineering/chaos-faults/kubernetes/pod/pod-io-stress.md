@@ -35,10 +35,10 @@ Stressing the disk with continuous and heavy IO for example can cause degradatio
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment Tuneable
+## Experiment Tunables
 
 <details>
-    <summary>Check the Experiment Tuneable</summary>
+    <summary>Check the Experiment Tunables</summary>
     <h2>Optional Fields</h2>
     <table>
       <tr>

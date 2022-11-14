@@ -34,10 +34,10 @@ Coming soon.
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment Tuneable
+## Experiment Tunables
 
 <details>
-    <summary>Check the Experiment Tuneable</summary>
+    <summary>Check the Experiment Tunables</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -146,9 +146,9 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific Tuneable
+### Common and Pod specific Tunables
 
-Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable.
+Refer to the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific Tunables.
 
 ### Target Service Port
 

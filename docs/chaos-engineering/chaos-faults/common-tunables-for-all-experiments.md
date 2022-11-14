@@ -1,7 +1,7 @@
 ---
-title: Common Tuneable for All Experiments
+title: Common Tunables for All Experiments
 ---
-Experiment Tuneable which are common for all the experiments. These Tuneable can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
+Experiment Tunables which are common for all the experiments. These Tunables can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
 
 ### Duration of the chaos
 

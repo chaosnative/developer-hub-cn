@@ -1,5 +1,5 @@
 ---
-title: Common AWS Experiment Tuneable
+title: Common AWS Experiment Tunables
 ---
 
 ### Managed NodeGroup

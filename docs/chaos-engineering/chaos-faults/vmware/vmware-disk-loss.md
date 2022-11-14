@@ -46,10 +46,10 @@ stringData:
 - The target disks should be attached to the VM.
 :::
 
-## Experiment Tuneable
+## Experiment Tunables
 
 <details>
-    <summary>Check the Experiment Tuneable</summary>
+    <summary>Check the Experiment Tunables</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -100,9 +100,9 @@ stringData:
 
 ## Experiment Examples
 
-### Common Experiment Tuneable
+### Common Experiment Tunables
 
-Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
+Refer to the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
 
 ### VIRTUAL_DISK_NAMES
 

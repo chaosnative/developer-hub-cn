@@ -59,10 +59,10 @@ If the target EC2 instance is a part of a self-managed nodegroup then make sure 
 
 :::
 
-## Experiment Tuneable
+## Experiment Tunables
 
 <details>
-    <summary>Check the Experiment Tuneable</summary>
+    <summary>Check the Experiment Tunables</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -123,9 +123,9 @@ If the target EC2 instance is a part of a self-managed nodegroup then make sure 
 
 ## Experiment Examples
 
-### Common and AWS specific Tuneable
+### Common and AWS specific Tunables
 
-Refer to the [common attributes](../common-Tuneable-for-all-experiments) and [AWS specific tunable](./aws-experiments-Tuneable) to tune the common Tuneable for all experiments and aws specific Tuneable.
+Refer to the [common attributes](../common-tunables-for-all-experiments) and [AWS specific tunable](./aws-experiments-tunables) to tune the common tunables for all experiments and aws specific Tunables.
 
 ### Target single instance
 
