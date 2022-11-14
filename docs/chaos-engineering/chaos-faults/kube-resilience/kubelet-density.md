@@ -1,4 +1,4 @@
-cd---
+---
 id: kubelet-density
 title: Kubelet Density
 ---
@@ -37,10 +37,10 @@ Coming soon.
 
 :::
 
-## Experiment tunables
+## Experiment Tuneable
 
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -106,9 +106,9 @@ Coming soon.
 
 ## Experiment Examples
 
-### Common Experiment Tunables
+### Common Experiment Tuneable
 
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### Pod Template provided as CM
 

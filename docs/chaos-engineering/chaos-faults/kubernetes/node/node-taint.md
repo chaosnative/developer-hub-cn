@@ -4,13 +4,15 @@ title: Node Taint
 ---
 
 ## Introduction
+
 - It taints the node to apply the desired effect. The resources which contains the correspoing tolerations can only bypass the taints.
 
-:::tip Fault execution flow chart 
+:::tip Fault execution flow chart
 ![Node Taint](./static/images/node-taint.png)
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -19,7 +21,9 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
 - Ensure that the node specified in the experiment ENV variable <code>TARGET_NODE</code> (the node for which docker service need to be killed) should be cordoned before execution of the chaos experiment to ensure that the experiment resources are not scheduled on it or subjected to eviction. This can be achieved with the following steps:
   - Get node names against the applications pods: <code>kubectl get pods -o wide</code>
@@ -27,13 +31,15 @@ Coming soon.
 :::
 
 ## Default Validations
+
 :::note
 The target nodes should be in ready state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -84,8 +90,9 @@ The target nodes should be in ready state before and after chaos injection.
 
 ## Experiment Examples
 
-### Common and Node specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Node specific tunable](./common-tunables-for-node-experiments) to tune the common tunables for all experiments and node specific tunables.
+### Common and Node specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Node specific tunable](./common-Tuneable-for-node-experiments) to tune the common Tuneable for all experiments and node specific Tuneable.
 
 ### Taint Label
 

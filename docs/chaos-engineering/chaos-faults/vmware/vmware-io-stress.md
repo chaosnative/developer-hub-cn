@@ -4,21 +4,26 @@ title: VMware IO Stress
 ---
 
 ## Introduction
-- This experiment causes disk stress on the target VMware VMs. The experiment aims to verify the resiliency of applications that share this disk resource to the VM. 
+
+- This experiment causes disk stress on the target VMware VMs. The experiment aims to verify the resiliency of applications that share this disk resource to the VM.
 
 :::tip Fault execution flow chart
 ![VMware IO Stress](./static/images/vmware-io-stress.png)
 :::
 
 ## Prerequisites
-:::info
-- Ensure that Kubernetes Version > 1.16 
 
-** vCenter Requirements **
-- Ensure the connectivity of  execution plane with vCenter and the hosts over 443 port. 
+:::info
+
+- Ensure that Kubernetes Version > 1.16
+
+### vCenter Requirements
+
+- Ensure the connectivity of  execution plane with vCenter and the hosts over 443 port.
 - Ensure that Vmware tool is installed on the target VM with remote execution enabled.
 - Ensure that you have sufficient vCenter permission to access hosts and VMs.
 - Ensure to create a Kubernetes secret having the Vcenter credentials in the `CHAOS_NAMESPACE`. A sample secret file looks like:
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -31,19 +36,23 @@ stringData:
     VCENTERUSER: XXXXXXXXXXXXX
     VCENTERPASS: XXXXXXXXXXXXX
 ```
+
 ### NOTE
+
 You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 :::
 
-    
 ## Default Validations
+
 :::info
+
 - VM should be in healthy state.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -68,33 +77,33 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
         <td> FILESYSTEM_UTILIZATION_PERCENTAGE </td>
         <td> Specify the size as percentage of free space on the file system </td>
         <td>  </td>
-      </tr>   
+      </tr>
        <tr>
         <td> FILESYSTEM_UTILIZATION_BYTES </td>
         <td> Specify the size in GigaBytes(GB). FILESYSTEM_UTILIZATION_PERCENTAGE & FILESYSTEM_UTILIZATION_BYTES are mutually exclusive. If both are provided, FILESYSTEM_UTILIZATION_PERCENTAGE is prioritized. </td>
         <td>  </td>
-      </tr>  
+      </tr>
        <tr>
         <td> NUMBER_OF_WORKERS </td>
         <td> It is the number of IO workers involved in IO disk stress </td>
         <td> Default to 4 </td>
-      </tr>    
+      </tr>
        <tr>
         <td> VOLUME_MOUNT_PATH </td>
         <td> Fill the given volume mount path </td>
         <td>  </td>
-      </tr>   
+      </tr>
       <tr>
         <td> CPU_CORES </td>
         <td> Number of the cpu cores subjected to CPU stress </td>
         <td> Default to 1 </td>
         </tr>
-      <tr> 
+      <tr>
         <td> TOTAL_CHAOS_DURATION </td>
         <td> The total time duration for chaos insertion (sec) </td>
         <td> Defaults to 30s </td>
       </tr>
-      <tr> 
+      <tr>
         <td> CHAOS_INTERVAL </td>
         <td> The interval (in sec) between successive instance termination </td>
         <td> Defaults to 30s </td>
@@ -114,10 +123,12 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 
 ## Experiment Examples
 
-### Common Experiment Tunables
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+### Common Experiment Tuneable
+
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### FILESYSTEM_UTILIZATION_PERCENTAGE
+
 It stresses the `FILESYSTEM_UTILIZATION_PERCENTAGE` percentage of total free space available in the VM.
 
 Use the following example to tune this:
@@ -131,7 +142,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: vmware-io-stress
@@ -143,11 +153,11 @@ spec:
           value: 'test-vm-01'
         # percentage of free space of file system, need to be stressed
         - name: FILESYSTEM_UTILIZATION_PERCENTAGE
-          value: '10' 
-        - name: TOTAL_CHAOS_DURATION
-          VALUE: '60'
+          value: '10'
 ```
+
 ### Filesystem Utilization Bytes
+
 It stresses the `FILESYSTEM_UTILIZATION_BYTES` GB of the i/o of the targeted VM. It is mutually exclusive with the FILESYSTEM_UTILIZATION_PERCENTAGE ENV. If FILESYSTEM_UTILIZATION_PERCENTAGE ENV is set then it will use the percentage for the stress otherwise, it will stress the i/o based on FILESYSTEM_UTILIZATION_BYTES ENV.
 
 Use the following example to tune this:
@@ -160,7 +170,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: vmware-io-stress
@@ -173,10 +182,10 @@ spec:
         # size of io to be stressed
         - name: FILESYSTEM_UTILIZATION_BYTES
           value: '1' #in GB
-        - name: TOTAL_CHAOS_DURATION
-          VALUE: '60'
 ```
+
 ### Mount Path
+
 The volume mount path, which needs to be filled. It can be tuned with `VOLUME_MOUNT_PATH` ENV
 
 Use the following example to tune this:
@@ -190,7 +199,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: vmware-io-stress
@@ -206,10 +214,10 @@ spec:
         # size of io to be stressed
         - name: FILESYSTEM_UTILIZATION_BYTES
           value: '1' #in GB
-        - name: TOTAL_CHAOS_DURATION
-          VALUE: '60'
 ```
+
 ### Workers For Stress
+
 The worker's count for the stress can be tuned with `NUMBER_OF_WORKERS` ENV.
 
 [embedmd]:# (./static/manifests/vmware-io-stress/vm-io-stress-filesystem-worker.yaml yaml)
@@ -221,7 +229,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: vmware-io-stress
@@ -231,12 +238,10 @@ spec:
         # Name of the VM
         - name: VM_NAME
           value: 'test-vm-01'
-        # number of io workers 
+        # number of io workers
         - name: NUMBER_OF_WORKERS
           value: '4'
         # size of io to be stressed
         - name: FILESYSTEM_UTILIZATION_BYTES
           value: '1' #in GB
-        - name: TOTAL_CHAOS_DURATION
-          VALUE: '60'
 ```

@@ -4,7 +4,8 @@ title: EC2 Network Latency
 ---
 
 ## Introduction
-- It causes flaky access to the application/services by injecting network packet latency to Ec2 instance(s).
+
+- It causes flaky access to the application/services by injecting network packet latency to EC2 instance(s).
 - It helps to check the performance of the application/process running on the EC2 instances.
 
 :::tip Fault execution flow chart
@@ -12,25 +13,28 @@ title: EC2 Network Latency
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
-The experiment causes network degradation without the ec2 instance being marked unhealthy/unworthy of traffic. The idea of this experiment is to simulate issues within your instance network OR microservice communication across services in different hosts etc.
+The experiment causes network degradation without the ec2 instance being marked unhealthy/unworthy of traffic. This experiment aims to simulate issues within your instance network OR microservice communication across services in different hosts, etc.
 
-Mitigation (in this case keep the timeout i.e., network latency low) could be via some middleware that can switch traffic based on some SLOs/perf parameters. If such an arrangement is not available the next best thing would be to verify if such a degradation is highlighted via notification/alerts etc,. so the admin/SRE has the opportunity to investigate and fix things. Another utility of the test would be to see what the extent of impact caused to the end-user OR the last point in the app stack on account of degradation in access to a downstream/dependent microservice. Whether it is acceptable OR breaks the system to an unacceptable degree. The experiment provides DESTINATION_IPS or DESTINATION_HOSTS so that you can control the chaos against specific services within or outside the ec2 instance.
+Mitigation (in this case keep the timeout i.e., network latency low) could be via some middleware that can switch traffic based on some SLOs/perf parameters. If such an arrangement is not available the next best thing would be to verify if such degradation is highlighted via notification/alerts etc. so the admin/SRE has the opportunity to investigate and fix things. Another utility of the test would be to see the extent of impact caused to the end-user OR the last point in the app stack on account of degradation in access to a downstream/dependent microservice whether it is acceptable OR breaks the system to an unacceptable degree. The experiment provides DESTINATION_IPS or DESTINATION_HOSTS so that you can control the chaos against specific services within or outside the ec2 instance.
 
-The ec2 instance may stall or get corrupted while they wait endlessly for a packet. The experiment limits the impact (blast radius) to only the traffic you want to test by specifying IP addresses or application information. This experiment will help to improve the resilience of your services over time
+The ec2 instance may stall or get corrupted while waiting for a packet. The experiment limits the impact (blast radius) to only the traffic you want to test by specifying IP addresses or application information. This experiment will help to improve the resilience of your services over time
 </div>
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16
 
 **AWS EC2 Access Requirement:**
 
-- Ensure that SSM agent is installed and running in the target EC2 instance.
-- Ensure to create a Kubernetes secret having the AWS Access Key ID and Secret Access Key credentials in the `CHAOS_NAMESPACE`. A sample secret file looks like:
+- Ensure that the SSM agent is installed and running in the target EC2 instance.
+- Ensure to create a Kubernetes secret having the AWS Access Key ID and Secret Access Key credentials in the `CHAOS_NAMESPACE`. A sample secret file looks like this:
 
 ```yaml
 apiVersion: v1
@@ -49,18 +53,22 @@ stringData:
 - If you change the secret name then please also update the `experiment.yml` ENV values for deriving the respective data from the secret. Also account for the path at which this secret is mounted as a file in the manifest ENV `AWS_SHARED_CREDENTIALS_FILE`.
 
 ### NOTE
-You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
+
+You can pass the VM credentials as secrets or as a ChaosEngine ENV variable.
 :::
 
-    
 ## Default Validations
+
 :::info
-- EC2 instance should be in healthy state.
+
+- EC2 instance should be in a healthy state.
+
 :::
 
-## Experiment Tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -93,12 +101,12 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
         </tr>
         <tr>
             <td> CHAOS_INTERVAL </td>
-            <td> The interval (in sec) between successive instance termination </td>
+            <td> The interval (in seconds) between successive instance termination </td>
             <td> Defaults to 30s </td>
         </tr>
         <tr>
             <td> AWS_SHARED_CREDENTIALS_FILE </td>
-            <td> Provide the path for aws secret credentials</td>
+            <td> Provide the path for AWS secret credentials</td>
             <td> Defaults to <code>/tmp/cloud_config.yml</code> </td>
         </tr>
         <tr>
@@ -106,34 +114,34 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
             <td> Select to install dependencies used to run the network chaos. It can be either True or False </td>
             <td> If the dependency already exists, you can turn it off. Defaults to True.</td>
         </tr>
-        <tr> 
+        <tr>
             <td> NETWORK_LATENCY </td>
             <td> The latency/delay in milliseconds</td>
             <td> Default 2000, provide numeric value only </td>
         </tr>
-        <tr> 
+        <tr>
             <td> JITTER </td>
             <td> The network jitter value in ms</td>
             <td> Default 0, provide numeric value only </td>
         </tr>
-        <tr> 
+        <tr>
             <td> DESTINATION_IPS </td>
             <td> IP addresses of the services or the CIDR blocks(range of IPs), the accessibility to which is impacted </td>
-            <td> Comma separated IP(S) or CIDR(S) can be provided. if not provided, it will induce network chaos for all ips/destinations </td>
+            <td> Comma separated IP(S) or CIDR(S) can be provided. if not provided, it will induce network chaos for all IPs/Destinations </td>
         </tr>
-        <tr> 
+        <tr>
             <td> DESTINATION_HOSTS </td>
             <td> DNS Names of the services, the accessibility to which, is impacted </td>
-            <td> if not provided, it will induce network chaos for all ips/destinations or DESTINATION_IPS if already defined </td>
+            <td> if not provided, it will induce network chaos for all IPs/Destinations or DESTINATION_IPS if already defined </td>
         </tr>
         <tr>
             <td> NETWORK_INTERFACE  </td>
-            <td> Name of ethernet interface considered for shaping traffic	</td>
+            <td> Name of ethernet interface considered for shaping traffic </td>
             <td> Defaults to `eth0` </td>
         </tr>
         <tr>
             <td> SEQUENCE </td>
-            <td> It defines sequence of chaos execution for multiple instance </td>
+            <td> It defines the sequence of chaos execution for multiple instances </td>
             <td> Default value: parallel. Supported: serial, parallel </td>
         </tr>
         <tr>
@@ -146,8 +154,9 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 
 ## Experiment Examples
 
-### Common Experiment Tunables
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+### Common Experiment Tuneable
+
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### Network Packet Latency
 
@@ -164,7 +173,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-network-latency
@@ -174,10 +182,8 @@ spec:
         # network packet latency
         - name: NETWORK_LATENCY
           value: '2000'
-
         - name: EC2_INSTANCE_ID
           value: 'instance-1'
-
         - name: REGION
           value: 'us-west-2'
 ```
@@ -197,23 +203,19 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-network-latency
     spec:
       components:
         env:
-        # value of the network latency jitter (in ms) 
+        # value of the network latency jitter (in ms)
         - name: JITTER
           value: '200'
-
         - name: NETWORK_LATENCY
           value: '2000'
-
         - name: EC2_INSTANCE_ID
           value: 'instance-1'
-
         - name: REGION
           value: 'us-west-2'
 ```
@@ -236,7 +238,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-network-latency
@@ -249,17 +250,15 @@ spec:
         # supports comma separated destination hosts
         - name: DESTINATION_HOSTS
           value: 'google.com'
-
         - name: EC2_INSTANCE_ID
           value: 'instance-1'
-
         - name: REGION
           value: 'us-west-2'
 ```
 
-###  Network Interface
+### Network Interface
 
-The defined name of the ethernet interface, which is considered for shaping traffic. It can be tuned via `NETWORK_INTERFACE` ENV. Its default value is `eth0`.
+The defined name of the ethernet interface that is considered for shaping traffic. It can be tuned via `NETWORK_INTERFACE` ENV. Its default value is `eth0`.
 
 Use the following example to tune this:
 
@@ -272,20 +271,17 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-network-latency
     spec:
       components:
         env:
-        # name of the network interface 
+        # name of the network interface
         - name: NETWORK_INTERFACE
           value: 'eth0'
-
         - name: EC2_INSTANCE_ID
           value: 'instance-1'
-
         - name: REGION
           value: 'us-west-2'
 ```

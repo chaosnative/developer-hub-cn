@@ -4,7 +4,9 @@ title: Container Kill
 ---
 
 ## Introduction
+
 Container kill fault causes container failure of specific/random replicas of an application resources.
+
 - It tests the deployment sanity (replica availability & uninterrupted service) and recovery workflow of the application.
 - It is also useful for testing the recovery of pods having side-car containers.
 
@@ -13,6 +15,7 @@ Container kill fault causes container failure of specific/random replicas of an 
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -21,18 +24,23 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
+
 :::
 
 ## Default Validations
+
 :::note
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Optional Fields</h2>
     <table>
       <tr>
@@ -59,7 +67,7 @@ The application pods should be in running state before and after chaos injection
         <td> PODS_AFFECTED_PERC </td>
         <td> The Percentage of total pods to target </td>
         <td> Defaults to 0 (corresponds to 1 replica), provide numeric value only </td>
-      </tr> 
+      </tr>
       <tr>
         <td> TARGET_PODS </td>
         <td> Comma separated list of application pod name subjected to container kill chaos</td>
@@ -105,8 +113,9 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables.
+### Common and Pod specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable.
 
 ### Kill Specific Container
 
@@ -212,7 +221,7 @@ spec:
 ### Signal For Kill
 
 It defines the Linux signal passed while killing the container. It can be tuned via `SIGNAL` ENV. It defaults to the `SIGTERM`.
- 
+
 [embedmd]:# (./static/manifests/container-kill/signal.yaml yaml)
 ```yaml
 # specific linux signal passed while kiiling container

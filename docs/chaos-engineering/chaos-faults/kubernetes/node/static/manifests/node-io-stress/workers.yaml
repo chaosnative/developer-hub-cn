@@ -14,7 +14,7 @@ spec:
         env:
         # total number of io workers involved in stress
         - name: NUMBER_OF_WORKERS
-          value: '4' 
+          value: '4'
           # total number of vm workers involved in stress
         - name: VM_WORKERS
           value: '1'

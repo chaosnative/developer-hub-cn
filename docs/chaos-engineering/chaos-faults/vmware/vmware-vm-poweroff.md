@@ -4,6 +4,7 @@ title: VMware VM-Poweroff
 ---
 
 ## Introduction
+
 - It causes VMWare VMs to Stop/Power-off before bringing them back to Powered-on state after a specified chaos duration using the VMWare APIs to start/stop the target VM.
 - It helps to check the performance of the application/process running on the VMWare VMs.
 
@@ -12,6 +13,7 @@ title: VMware VM-Poweroff
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -24,7 +26,12 @@ Coming soon.
 :::info
 
 - Ensure that Kubernetes Version >= 1.17
-- Ensure that you have sufficient Vcenter access to stop and start the VM.
+
+### vCenter Requirements
+
+- Ensure the connectivity of execution plane with vCenter and the hosts over 443 port.
+- Ensure that Vmware tool is installed on the target VM with remote execution enabled.
+- Ensure that you have sufficient vCenter permission to access hosts and VMs.
 - Ensure to create a Kubernetes secret having the Vcenter credentials in the `CHAOS_NAMESPACE`. A sample secret file looks like:
 
 ```yaml
@@ -53,10 +60,10 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 
 :::
 
-## Experiment tunables
+## Experiment Tuneable
 
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -102,8 +109,9 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 
 ## Experiment Examples
 
-### Common Experiment Tunables
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+### Common Experiment Tuneable
+
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### Stop/Poweroff VM By MOID
 
@@ -120,7 +128,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: vm-poweroff
@@ -130,7 +137,4 @@ spec:
         # MOID of the VM
         - name: APP_VM_MOIDS
           value: 'vm-53,vm-65'
-
-        - name: TOTAL_CHAOS_DURATION
-          VALUE: '60'
 ```

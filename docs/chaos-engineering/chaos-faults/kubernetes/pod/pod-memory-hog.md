@@ -4,6 +4,7 @@ title: Pod Memory Hog
 ---
 
 ## Introduction
+
 - This experiment consumes the Memory resources on the application container on specified memory in megabytes.
 - It simulates conditions where app pods experience Memory spikes either due to expected/undesired processes thereby testing how the overall application stack behaves when this occurs.
 
@@ -12,28 +13,33 @@ title: Pod Memory Hog
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
-Memory usage within containers is subject to various constraints in Kubernetes. If the limits are specified in their spec, exceeding them can cause termination of the container (due to OOMKill of the primary process, often pid 1) - the restart of the container by kubelet, subject to the policy specified. For containers with no limits placed, the memory usage is uninhibited until such time as the Node level OOM behavior takes over. In this case, containers on the node can be killed based on their oom_score and the QoS class a given pod belongs to (bestEffort ones are first to be targeted). This eval is extended to all pods running on the node - thereby causing a bigger blast radius. 
+Memory usage within containers is subject to various constraints in Kubernetes. If the limits are specified in their spec, exceeding them can cause termination of the container (due to OOMKill of the primary process, often pid 1) - the restart of the container by kubelet, subject to the policy specified. For containers with no limits placed, the memory usage is uninhibited until such time as the Node level OOM behavior takes over. In this case, containers on the node can be killed based on their oom_score and the QoS class a given pod belongs to (bestEffort ones are first to be targeted). This eval is extended to all pods running on the node - thereby causing a bigger blast radius.
 
 This experiment launches a stress process within the target container - which can cause either the primary process in the container to be resource constrained in cases where the limits are enforced OR eat up available system memory on the node in cases where the limits are not specified.
 </div>
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
 :::
 
 ## Default Validations
+
 :::note
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Optional Fields</h2>
     <table>
       <tr>
@@ -50,7 +56,7 @@ The application pods should be in running state before and after chaos injection
         <td> NUMBER_OF_WORKERS </td>
         <td> The number of workers used to run the stress process  </td>
         <td> Defaults to 1 </td>
-      </tr>  
+      </tr>
       <tr>
         <td> TOTAL_CHAOS_DURATION </td>
         <td> The time duration for chaos insertion (seconds)  </td>
@@ -80,7 +86,7 @@ The application pods should be in running state before and after chaos injection
         <td> TARGET_CONTAINER </td>
         <td> Name of the target container under chaos.</td>
         <td> If not provided, it will select the first container of the target pod</td>
-      </tr>   
+      </tr>
       <tr>
         <td> CONTAINER_RUNTIME </td>
         <td> container runtime interface for the cluster</td>
@@ -90,7 +96,7 @@ The application pods should be in running state before and after chaos injection
         <td> SOCKET_PATH </td>
         <td> Path of the containerd/crio/docker socket file </td>
         <td> Defaults to <code>/var/run/docker.sock</code> </td>
-      </tr>        
+      </tr>
       <tr>
         <td> PODS_AFFECTED_PERC </td>
         <td> The Percentage of total pods to target  </td>
@@ -111,8 +117,9 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables.
+### Common and Pod specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable.
 
 ### Memory Consumption
 
@@ -149,7 +156,7 @@ spec:
 
 ### Workers For Stress
 
-The worker's count for the stress can be tuned with `NUMBER_OF_WORKERS` ENV. 
+The worker's count for the stress can be tuned with `NUMBER_OF_WORKERS` ENV.
 
 Use the following example to tune this:
 

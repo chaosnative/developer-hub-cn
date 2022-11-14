@@ -4,6 +4,7 @@ title: EC2 Process Kill
 ---
 
 ## Introduction
+
 - EC2 Process Kill experiment kills the target processes running on ec2 instance to determine the application/process resilience.
 - It helps to check the performance of the application/process running on the ec2 instance(s).
 
@@ -12,6 +13,7 @@ title: EC2 Process Kill
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -20,7 +22,9 @@ Disrupt the application critical processes such as databases or message queues r
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16
 
 **AWS EC2 Access Requirement:**
@@ -45,19 +49,23 @@ stringData:
 - If you change the secret name then please also update the `experiment.yml` ENV values for deriving the respective data from the secret. Also account for the path at which this secret is mounted as a file in the manifest ENV `AWS_SHARED_CREDENTIALS_FILE`.
 
 ### NOTE
+
 You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 :::
 
-
 ## Default Validations
+
 :::info
+
 - EC2 instance should be in healthy state
 - The target processes should exist in the VM.
+
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -88,7 +96,7 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
         <th> Description </th>
         <th> Notes </th>
       </tr>
-      <tr> 
+      <tr>
         <td> TOTAL_CHAOS_DURATION </td>
         <td> The total time duration for chaos insertion (sec) </td>
         <td> Defaults to 30s </td>
@@ -103,12 +111,13 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 
 ## Experiment Examples
 
-### Common Experiment Tunables
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+### Common Experiment Tuneable
+
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### PROCESS_IDS
-It contains the target process Ids running on a particular ec2 instance
 
+It contains the target process Ids running on a particular ec2 instance
 
 Use the following example to tune this:
 
@@ -121,7 +130,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-process-kill
@@ -131,12 +139,8 @@ spec:
         # List of Process IDs
         - name: PROCESS_IDS
           value: '8688,4678'
-
         - name: EC2_INSTANCE_ID
           value: 'instance-1'
-
         - name: REGION
           value: 'us-west-2'
 ```
-
-

@@ -4,6 +4,7 @@ title: Pod CPU Hog Exec
 ---
 
 ## Introduction
+
 - This experiment consumes the CPU resources of the application container.
 
 - It simulates conditions where app pods experience CPU spikes either due to expected/undesired processes thereby testing how the overall application stack behaves when this occurs.
@@ -13,28 +14,33 @@ title: Pod CPU Hog Exec
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
 Disk Pressure or CPU hogs is another very common and frequent scenario we find in kubernetes applications that can result in the eviction of the application replica and impact its delivery. Such scenarios that can still occur despite whatever availability aids K8s provides. These problems are generally referred to as "Noisy Neighbour"  problems.
-    
+
 Injecting a rogue process into a target container, we starve the main microservice process (typically pid 1) of the resources allocated to it (where limits are defined) causing slowness in application traffic or in other cases unrestrained use can cause node to exhaust resources leading to eviction of all pods.So this category of chaos experiment helps to build the immunity on the application undergoing any such stress scenario
 </div>
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
 :::
 
 ## Default Validations
+
 :::note
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Optional Fields</h2>
     <table>
       <tr>
@@ -61,12 +67,12 @@ The application pods should be in running state before and after chaos injection
         <td> TARGET_PODS </td>
         <td> Comma separated list of application pod name subjected to pod cpu hog chaos</td>
         <td> If not provided, it will select target pods randomly based on provided appLabels</td>
-      </tr> 
-      <tr> 
+      </tr>
+      <tr>
         <td> TARGET_CONTAINER </td>
         <td> Name of the target container under chaos </td>
         <td> If not provided, it will select the first container of the target pod </td>
-      </tr> 
+      </tr>
       <tr>
         <td> PODS_AFFECTED_PERC </td>
         <td> The Percentage of total pods to target  </td>
@@ -97,8 +103,9 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables.
+### Common and Pod specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable.
 
 ### CPU Cores
 

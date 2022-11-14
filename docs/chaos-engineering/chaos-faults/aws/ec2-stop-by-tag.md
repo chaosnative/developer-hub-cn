@@ -4,6 +4,7 @@ title: EC2 Stop By Tag
 ---
 
 ## Introduction
+
 - It causes termination of an EC2 instance by tag before bringing it back to running state after the specified chaos duration.
 - It helps to check the performance of the application/process running on the ec2 instance.
 When the MANAGED_NODEGROUP is enable then the experiment will not try to start the instance post chaos instead it will check of the addition of the new node instance to the cluster.
@@ -24,9 +25,11 @@ Coming soon.
 ## Prerequisites
 
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
-- Ensure that you have sufficient AWS access to stop and start an ec2 instance. 
+- Ensure that you have sufficient AWS access to stop and start an ec2 instance.
 - Ensure to create a Kubernetes secret having the AWS access configuration(key) in the `CHAOS_NAMESPACE`. A sample secret file looks like:
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -40,11 +43,12 @@ stringData:
     aws_access_key_id = XXXXXXXXXXXXXXXXXXX
     aws_secret_access_key = XXXXXXXXXXXXXXX
 ```
+
 - If you change the secret key name (from `cloud_config.yml`) please also update the `AWS_SHARED_CREDENTIALS_FILE` ENV value on `experiment.yaml`with the same name.
 
 ### WARNING
 
-If the target EC2 instance is a part of a self-managed nodegroup then make sure to drain the target node if any application is running on it and also ensure to cordon the target node before running the experiment so that the experiment pods do not schedule on it. 
+If the target EC2 instance is a part of a self-managed nodegroup then make sure to drain the target node if any application is running on it and also ensure to cordon the target node before running the experiment so that the experiment pods do not schedule on it.
 :::
 
 ## Default Validations
@@ -55,10 +59,10 @@ If the target EC2 instance is a part of a self-managed nodegroup then make sure 
 
 :::
 
-## Experiment tunables
+## Experiment Tuneable
 
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -66,7 +70,7 @@ If the target EC2 instance is a part of a self-managed nodegroup then make sure 
         <th> Description </th>
         <th> Notes </th>
       </tr>
-      <tr> 
+      <tr>
         <td> INSTANCE_TAG </td>
         <td> Instance Tag to filter the target ec2 instance.</td>
         <td> The <code>INSTANCE_TAG</code> should be provided as <code>key:value</code> ex: <code>team:devops</code></td>
@@ -75,7 +79,7 @@ If the target EC2 instance is a part of a self-managed nodegroup then make sure 
         <td> REGION </td>
         <td> The region name of the target instance</td>
         <td> </td>
-      </tr> 
+      </tr>
     </table>
     <h2>Optional Fields</h2>
     <table>
@@ -84,26 +88,26 @@ If the target EC2 instance is a part of a self-managed nodegroup then make sure 
         <th> Description </th>
         <th> Notes </th>
       </tr>
-      <tr> 
+      <tr>
         <td> INSTANCE_AFFECTED_PERC </td>
         <td> The Percentage of total ec2 instance to target </td>
         <td> Defaults to 0 (corresponds to 1 instance), provide numeric value only </td>
       </tr>
-      <tr> 
+      <tr>
         <td> TOTAL_CHAOS_DURATION </td>
         <td> The total time duration for chaos insertion (sec) </td>
         <td> Defaults to 30s </td>
       </tr>
-      <tr> 
+      <tr>
         <td> CHAOS_INTERVAL </td>
         <td> The interval (in sec) between successive instance termination.</td>
         <td> Defaults to 30s </td>
-      </tr>  
-      <tr> 
+      </tr>
+      <tr>
         <td> MANAGED_NODEGROUP </td>
         <td> Set to <code>enable</code> if the target instance is the part of self-managed nodegroups </td>
         <td> Defaults to <code>disable</code> </td>
-      </tr>  
+      </tr>
       <tr>
         <td> SEQUENCE </td>
         <td> It defines sequence of chaos execution for multiple instance</td>
@@ -113,15 +117,15 @@ If the target EC2 instance is a part of a self-managed nodegroup then make sure 
         <td> RAMP_TIME </td>
         <td> Period to wait before and after injection of chaos in sec </td>
         <td> </td>
-      </tr>    
+      </tr>
     </table>
 </details>
 
 ## Experiment Examples
 
-### Common and AWS specific tunables
+### Common and AWS specific Tuneable
 
-Refer the [common attributes](../common-tunables-for-all-experiments) and [AWS specific tunable](./aws-experiments-tunables) to tune the common tunables for all experiments and aws specific tunables.
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) and [AWS specific tunable](./aws-experiments-Tuneable) to tune the common Tuneable for all experiments and aws specific Tuneable.
 
 ### Target single instance
 
@@ -138,7 +142,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-terminate-by-tag
@@ -170,7 +173,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-terminate-by-tag

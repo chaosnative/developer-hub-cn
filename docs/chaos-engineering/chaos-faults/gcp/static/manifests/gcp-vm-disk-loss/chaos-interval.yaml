@@ -5,7 +5,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: gcp-vm-disk-loss
@@ -26,4 +25,3 @@ spec:
           value: 'device-01,device-02'
         - name: GCP_PROJECT_ID
           value: 'project-id'
-        

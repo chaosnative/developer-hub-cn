@@ -8,11 +8,12 @@ title: Node Restart
 - It causes chaos to disrupt state of node by restarting it.
 - It tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
 
-:::tip Fault execution flow chart 
+:::tip Fault execution flow chart
 ![Node Restart](./static/images/node-restart.png)
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -21,7 +22,9 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16
 - Create a Kubernetes secret named `id-rsa` where the experiment will run, where its contents will be the private SSH key for `SSH_USER` used to connect to the node that hosts the target pod in the secret field `ssh-privatekey`. A sample secret is shown below:
 
@@ -37,27 +40,29 @@ Coming soon.
         ```
 
     Creating the RSA key pair for remote SSH access should be a trivial exercise for those who are already familiar with an ssh client, which entails the following actions:
-        
-    1. Create a new key pair and store the keys in a file named `my-id-rsa-key` and `my-id-rsa-key.pub` for the private and public keys respectively: 
-        ```
+
+    1. Create a new key pair and store the keys in a file named `my-id-rsa-key` and `my-id-rsa-key.pub` for the private and public keys respectively:
+      ```
         ssh-keygen -f ~/my-id-rsa-key -t rsa -b 4096
-        ```
+      ```
     2. For each node available, run this following command to copy the public key of `my-id-rsa-key`:
-        ```
+      ```
         ssh-copy-id -i my-id-rsa-key user@node
-        ```
-        
+      ```
+
     For further details, please check this [documentation](https://www.ssh.com/ssh/keygen/). Once you have copied the public key to all nodes and created the secret described earlier, you are ready to start your experiment.
 :::
 
 ## Default Validations
+
 :::note
 The target nodes should be in ready state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -123,8 +128,9 @@ The target nodes should be in ready state before and after chaos injection.
 
 ## Experiment Examples
 
-### Common and Node specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Node specific tunable](./common-tunables-for-node-experiments) to tune the common tunables for all experiments and node specific tunables.
+### Common and Node specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Node specific tunable](./common-Tuneable-for-node-experiments) to tune the common Tuneable for all experiments and node specific Tuneable.
 
 ### Reboot Command
 
@@ -158,7 +164,7 @@ spec:
           VALUE: '60'
 ```
 
-### SSH User 
+### SSH User
 
 It defines the name of the SSH user for the targeted node. It can be tuned via `SSH_USER` ENV.
 

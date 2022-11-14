@@ -32,9 +32,9 @@ This experiment helps to reproduce such a scenario with forced/graceful pod fail
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Optional Fields</h2>
     <table>
       <tr>
@@ -87,8 +87,8 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables. 
+### Common and Pod specific Tuneable
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable. 
 
 ### Force Delete
 
@@ -197,5 +197,5 @@ spec:
         # it will select a random interval within this range
         # if only one value is provided then it will select a random interval within 0-CHAOS_INTERVAL range
         - name: CHAOS_INTERVAL
-          value: '5-10' 
+          value: '5-10'
 ```

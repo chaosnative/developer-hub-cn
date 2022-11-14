@@ -4,6 +4,7 @@ title: GCP VM Disk Loss
 ---
 
 ## Introduction
+
 - It causes chaos to disrupt state of GCP persistent disk volume by detaching it from its VM instance for a certain chaos duration using the disk name.
 
 :::tip Fault execution flow chart
@@ -11,6 +12,7 @@ title: GCP VM Disk Loss
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -19,11 +21,14 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
 - Ensure that your service account has an editor access or owner access for the GCP project.
 - Ensure that the target disk volume is not a boot disk of any VM instance.
 - Ensure to create a Kubernetes secret having the GCP service account credentials in the default namespace. A sample secret file looks like:
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -31,27 +36,31 @@ metadata:
   name: cloud-secret
 type: Opaque
 stringData:
-  type: 
-  project_id: 
-  private_key_id: 
-  private_key: 
-  client_email: 
-  client_id: 
-  auth_uri: 
-  token_uri: 
-  auth_provider_x509_cert_url: 
-  client_x509_cert_url: 
+  type:
+  project_id:
+  private_key_id:
+  private_key:
+  client_email:
+  client_id:
+  auth_uri:
+  token_uri:
+  auth_provider_x509_cert_url:
+  client_x509_cert_url:
 ```
 :::
 
 ## Default Validations
+
 :::info
+
 - Disk volumes are attached to their respective instances.
+
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -59,16 +68,16 @@ stringData:
         <th> Description </th>
         <th> Notes </th>
       </tr>
-      <tr> 
+      <tr>
         <td> GCP_PROJECT_ID </td>
         <td> The ID of the GCP Project of which the disk volumes are a part of </td>
         <td> All the target disk volumes should belong to a single GCP Project </td>
       </tr>
-      <tr> 
+      <tr>
         <td> DISK_VOLUME_NAMES </td>
         <td> Target non-boot persistent disk volume names</td>
         <td> Multiple disk volume names can be provided as disk1,disk2,... </td>
-      </tr>  
+      </tr>
       <tr>
         <td> ZONES </td>
         <td> The zones of respective target disk volumes </td>
@@ -78,7 +87,7 @@ stringData:
         <td> DEVICE_NAMES </td>
         <td> The device names of respective target disk volumes </td>
         <td> Provide the device name for every target disk name as deviceName1,deviceName2... in the respective order of <code>DISK_VOLUME_NAMES</code>  </td>
-      </tr> 
+      </tr>
     </table>
     <h2>Optional Fields</h2>
     <table>
@@ -87,21 +96,21 @@ stringData:
         <th> Description </th>
         <th> Notes </th>
       </tr>
-      <tr> 
+      <tr>
         <td> TOTAL_CHAOS_DURATION </td>
         <td> The total time duration for chaos insertion (sec) </td>
         <td> Defaults to 30s </td>
       </tr>
-       <tr> 
+       <tr>
         <td> CHAOS_INTERVAL </td>
         <td> The interval (in sec) between the successive chaos iterations (sec) </td>
         <td> Defaults to 30s </td>
-      </tr>  
+      </tr>
       <tr>
         <td> SEQUENCE </td>
         <td> It defines sequence of chaos execution for multiple disks </td>
         <td> Default value: parallel. Supported: serial, parallel </td>
-      </tr> 
+      </tr>
       <tr>
         <td> RAMP_TIME </td>
         <td> Period to wait before and after injection of chaos in sec </td>
@@ -112,8 +121,9 @@ stringData:
 
 ## Experiment Examples
 
-### Common Experiment Tunables
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+### Common Experiment Tuneable
+
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### Detach Volumes By Names
 
@@ -132,7 +142,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: gcp-vm-disk-loss
@@ -172,7 +181,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: gcp-vm-disk-loss
@@ -193,5 +201,4 @@ spec:
           value: 'device-01,device-02'
         - name: GCP_PROJECT_ID
           value: 'project-id'
-        
 ```

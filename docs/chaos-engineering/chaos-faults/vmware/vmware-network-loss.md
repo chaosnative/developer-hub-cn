@@ -4,6 +4,7 @@ title: VMware Network Loss
 ---
 
 ## Introduction
+
 - It causes flaky access to the application/services by injecting network packet loss from vmware vm(s).
 - It helps to check the performance of the application/process running on the VMWare VMs.
 
@@ -12,6 +13,7 @@ title: VMware Network Loss
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -24,10 +26,18 @@ The vm may stall or get corrupted while they wait endlessly for a packet. The ex
 </details>
 
 ## Prerequisites
+
 :::info
-- Ensure that Kubernetes Version > 1.16 
-- Ensure that you have sufficient Vcenter access to stop and start the VM.
+
+- Ensure that Kubernetes Version > 1.16
+
+### vCenter Requirements
+
+- Ensure the connectivity of execution plane with vCenter and the hosts over 443 port.
+- Ensure that Vmware tool is installed on the target VM with remote execution enabled.
+- Ensure that you have sufficient vCenter permission to access hosts and VMs.
 - Ensure to create a Kubernetes secret having the Vcenter credentials in the `CHAOS_NAMESPACE`. A sample secret file looks like:
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -42,18 +52,21 @@ stringData:
 ```
 
 ### NOTE
+
 You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 :::
 
-    
 ## Default Validations
+
 :::info
+
 - VM should be in healthy state before and after chaos.
 :::
 
-## Experiment Tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -66,12 +79,12 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
         <td> Provide the target vm names</td>
         <td> You can provide multiple vm names using comma separated value eg: vm-1,vm-2 </td>
       </tr>
-      <tr> 
+      <tr>
         <td> VM_USER_NAME </td>
         <td> Provide the username of the target VM(s)</td>
         <td> Multiple usernames can be provided as comma separated (for more than one VM under chaos). It is used to run the govc command.</td>
       </tr>
-      <tr> 
+      <tr>
         <td> VM_PASSWORD </td>
         <td> Provide the password for the target VM(s)</td>
         <td> It is used to run the govc command.</td>
@@ -84,27 +97,27 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
         <th> Description </th>
         <th> Notes </th>
       </tr>
-      <tr> 
+      <tr>
         <td> TOTAL_CHAOS_DURATION </td>
         <td> The total time duration for chaos insertion (sec) </td>
         <td> Defaults to 30s </td>
       </tr>
-      <tr> 
+      <tr>
         <td> CHAOS_INTERVAL </td>
         <td> The interval (in sec) between successive instance termination </td>
         <td> Defaults to 30s </td>
       </tr>
-      <tr> 
+      <tr>
         <td> NETWORK_PACKET_LOSS_PERCENTAGE </td>
         <td> The packet loss in percentage </td>
         <td> Default to 100 percentage </td>
       </tr>
-      <tr> 
+      <tr>
         <td> DESTINATION_IPS </td>
         <td> IP addresses of the services or the CIDR blocks(range of IPs), the accessibility to which is impacted </td>
         <td> Comma separated IP(S) or CIDR(S) can be provided. if not provided, it will induce network chaos for all ips/destinations </td>
       </tr>
-      <tr> 
+      <tr>
         <td> DESTINATION_HOSTS </td>
         <td> DNS Names of the services, the accessibility to which, is impacted </td>
         <td> if not provided, it will induce network chaos for all ips/destinations or DESTINATION_IPS if already defined </td>
@@ -152,8 +165,9 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 
 ## Experiment Examples
 
-### Common Experiment Tunables
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+### Common Experiment Tuneable
+
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### Network Packet Loss
 
@@ -169,7 +183,6 @@ metadata:
   name: vmware-engine
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: vmware-network-loss
@@ -179,16 +192,10 @@ spec:
         # network packet loss percentage
         - name: NETWORK_PACKET_LOSS_PERCENTAGE
           value: '100'
-
-        - name: TOTAL_CHAOS_DURATION
-          VALUE: '60'
-
         - name: VM_NAME
           value: 'vm-1,vm-2'
-
         - name: VM_USER_NAME
           value: 'ubuntu,debian'
-
         - name: VM_PASSWORD
           value: '123,123'
 ```
@@ -211,7 +218,6 @@ metadata:
   name: vmware-engine
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: vmware-network-loss
@@ -224,21 +230,15 @@ spec:
         # supports comma separated destination hosts
         - name: DESTINATION_HOSTS
           value: 'google.com'
-
-        - name: TOTAL_CHAOS_DURATION
-          VALUE: '60'
-
         - name: VM_NAME
           value: 'vm-1,vm-2'
-
         - name: VM_USER_NAME
           value: 'ubuntu,debian'
-          
         - name: VM_PASSWORD
           value: '123,123'
 ```
 
-###  Network Interface
+### Network Interface
 
 The defined name of the ethernet interface, which is considered for shaping traffic. It can be tuned via `NETWORK_INTERFACE` ENV. Its default value is `eth0`.
 
@@ -253,26 +253,19 @@ metadata:
   name: vmware-engine
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: vmware-network-loss
     spec:
       components:
         env:
-        # name of the network interface 
+        # name of the network interface
         - name: NETWORK_INTERFACE
           value: 'eth0'
-
-        - name: TOTAL_CHAOS_DURATION
-          VALUE: '60'
-
         - name: VM_NAME
           value: 'vm-1,vm-2'
-
         - name: VM_USER_NAME
           value: 'ubuntu,debian'
-          
         - name: VM_PASSWORD
           value: '123,123'
 ```

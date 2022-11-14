@@ -3,6 +3,7 @@ id: pod-network-partition
 title: Pod Network Partition
 ---
 ## Introduction
+
 - It blocks the 100% Ingress and Egress traffic of the target application by creating network policy.
 - It can test the application's resilience to lossy/flaky network.
 
@@ -11,6 +12,7 @@ title: Pod Network Partition
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -19,18 +21,22 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
 :::
 
 ## Default Validations
+
 :::note
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Optional Fields</h2>
     <table>
       <tr>
@@ -67,12 +73,12 @@ The application pods should be in running state before and after chaos injection
         <td> DESTINATION_IPS </td>
         <td> IP addresses of the services or pods or the CIDR blocks(range of IPs), the accessibility to which is impacted </td>
         <td> comma separated IP(S) or CIDR(S) can be provided. if not provided, it will induce network chaos for all ips/destinations</td>
-      </tr>  
+      </tr>
       <tr>
         <td> DESTINATION_HOSTS </td>
         <td> DNS Names/FQDN names of the services, the accessibility to which, is impacted </td>
         <td> if not provided, it will induce network chaos for all ips/destinations or DESTINATION_IPS if already defined</td>
-      </tr>      
+      </tr>
       <tr>
         <td> LIB </td>
         <td> The chaos lib used to inject the chaos </td>
@@ -88,8 +94,9 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables.
+### Common and Pod specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable.
 
 ### Destination IPs And Destination Hosts
 
@@ -162,6 +169,7 @@ spec:
         - name: TOTAL_CHAOS_DURATION
           value: '60'
 ```
+
 ### Target Specific Pod(s)
 
 The network partition experiment interrupt traffic for all the external pods by default. The access to/from specific pod(s) can be allowed via providing pod labels inside `POD_SELECTOR` ENV.
@@ -203,7 +211,7 @@ Use the following example to tune this:
 
 [embedmd]:# (./static/manifests/pod-network-partition/policy-type.yaml yaml)
 ```yaml
-# inject network loss for only ingress or only egress or all traffics
+# inject network loss for only ingress or only engress or all traffics
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
@@ -232,9 +240,9 @@ spec:
 
 ### Destination Ports
 
-The network partition experiment interrupt traffic for all the external ports by default. Access to specific port(s) can be allowed by providing comma separated list of ports inside `PORTS` ENV. 
+The network partition experiment interrupt traffic for all the external ports by default. Access to specific port(s) can be allowed by providing comma separated list of ports inside `PORTS` ENV.
 
-Note: 
+Note:
 
 - If `PORT` is not set and none of the pod-selector, namespace-selector and destination_ips are provided then it will block traffic for all ports for all pods/ips
 - If `PORT` is not set but any of the podselector, nsselector and destination ips are provided then it will allow all ports for all the pods/ips filtered by the specified selectors
@@ -267,4 +275,3 @@ spec:
         - name: TOTAL_CHAOS_DURATION
           value: '60'
 ```
-

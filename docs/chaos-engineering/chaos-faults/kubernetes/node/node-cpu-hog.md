@@ -4,15 +4,17 @@ title: Node CPU Hog
 ---
 
 ## Introduction
+
 - This experiment causes CPU resource exhaustion on the Kubernetes node. The experiment aims to verify resiliency of applications whose replicas may be evicted on account on nodes turning unschedulable (Not Ready) due to lack of CPU resources.
 - The CPU chaos is injected using a helper pod running the linux stress tool (a workload generator). The chaos is effected for a period equalling the `TOTAL_CHAOS_DURATION`
 Application implies services. Can be reframed as: Tests application resiliency upon replica evictions caused due to lack of CPU resources.
 
-:::tip Fault execution flow chart 
+:::tip Fault execution flow chart
 ![Node CPU Hog](./static/images/node-stress.png)
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -21,18 +23,23 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
+
 :::
 
 ## Default Validations
+
 :::note
 The target nodes should be in ready state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -83,12 +90,12 @@ The target nodes should be in ready state before and after chaos injection.
         <td> NODE_CPU_CORE </td>
         <td> Number of cores of node CPU to be consumed  </td>
         <td> Defaults to <code>2</code> </td>
-      </tr>  
+      </tr>
         <tr>
             <td> NODES_AFFECTED_PERC </td>
             <td> The Percentage of total nodes to target  </td>
             <td> Defaults to 0 (corresponds to 1 node), provide numeric value only </td>
-        </tr> 
+        </tr>
         <tr>
             <td> SEQUENCE </td>
             <td> It defines sequence of chaos execution for multiple target pods </td>
@@ -99,10 +106,12 @@ The target nodes should be in ready state before and after chaos injection.
 
 ## Experiment Examples
 
-### Common and Node specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Node specific tunable](./common-tunables-for-node-experiments) to tune the common tunables for all experiments and node specific tunables.
+### Common and Node specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Node specific tunable](./common-Tuneable-for-node-experiments) to tune the common Tuneable for all experiments and node specific Tuneable.
 
 ### Node CPU Cores
+
 It contains number of cores of node CPU to be consumed. It can be tuned via `NODE_CPU_CORE` ENV.
 
 Use the following example to tune this:

@@ -4,6 +4,7 @@ title: VMware Service Stop
 ---
 
 ## Introduction
+
 - VMware Service Stop experiment stops the target systemd services running on Linux OS based VMware VM to determine the application/service resilience.
 - It helps to check the performance of the application/service running on the VMWare VMs.
 
@@ -12,14 +13,18 @@ title: VMware Service Stop
 :::
 
 ## Prerequisites
-:::info
-- Ensure that Kubernetes Version > 1.16 
 
-** vCenter Requirements **
-- Ensure the connectivity of execution plane with vCenter and the hosts over 443 port. 
+:::info
+
+- Ensure that Kubernetes Version > 1.16
+
+### vCenter Requirements
+
+- Ensure the connectivity of execution plane with vCenter and the hosts over 443 port.
 - Ensure that Vmware tool is installed on the target VM with remote execution enabled.
 - Ensure that you have sufficient vCenter permission to access hosts and VMs.
 - Ensure to create a Kubernetes secret having the Vcenter credentials in the `CHAOS_NAMESPACE`. A sample secret file looks like:
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -32,20 +37,24 @@ stringData:
     VCENTERUSER: XXXXXXXXXXXXX
     VCENTERPASS: XXXXXXXXXXXXX
 ```
+
 ### NOTE
+
 You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 :::
 
-    
 ## Default Validations
+
 :::info
+
 - VM should be in healthy state.
 - The target services should exist in the VM.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -71,17 +80,17 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
         <th> Description </th>
         <th> Notes </th>
       </tr>
-      <tr> 
+      <tr>
         <td> SELF_HEALING_SERVICES </td>
         <td> Set to <code>enable</code> if the target service is self healing </td>
         <td> Defaults to <code>disable</code> </td>
       </tr>
-      <tr> 
+      <tr>
         <td> TOTAL_CHAOS_DURATION </td>
         <td> The total time duration for chaos insertion (sec) </td>
         <td> Defaults to 30s </td>
       </tr>
-      <tr> 
+      <tr>
         <td> CHAOS_INTERVAL </td>
         <td> The interval (in sec) between successive instance termination </td>
         <td> Defaults to 30s </td>
@@ -101,12 +110,13 @@ You can pass the VM credentials as secrets or as an ChaosEngine ENV variable.
 
 ## Experiment Examples
 
-### Common Experiment Tunables
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+### Common Experiment Tuneable
+
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### SERVICE_NAME
-It contains the target service running on a particular VM
 
+It contains the target service running on a particular VM
 
 Use the following example to tune this:
 
@@ -119,7 +129,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
     - name: vmware-service-stop

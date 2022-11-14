@@ -5,8 +5,8 @@ title: EC2 HTTP Latency
 
 ## Introduction
 
-- EC2 HTTP Latency contains chaos to disrupt the state of infra resources. The experiment can induce a http chaos on AWS EC2 Instance using Amazon SSM Run Command, this is carried out by using SSM Docs which is in-built in the experiment for the give chaos scenario.
-- It injects http response latency on the service whose port is provided as TARGET_SERVICE_PORT by starting proxy server and then redirecting the traffic through the proxy server.
+- EC2 HTTP Latency contains chaos to disrupt the state of infra resources. The experiment can induce an http chaos on AWS EC2 Instance using Amazon SSM Run Command, this is carried out by using SSM Docs which is in-built into the experiment for the give chaos scenario.
+- It injects http response latency on the service whose port is provided as TARGET_SERVICE_PORT by starting the proxy server and then redirecting the traffic through the proxy server.
 - It causes http latency chaos on EC2 Instance using an SSM doc for a certain chaos duration.
 
 :::tip Fault execution flow chart
@@ -19,10 +19,9 @@ title: EC2 HTTP Latency
 
 - Ensure that Kubernetes Version >= 1.17
 
-**AWS EC2 Access Requirement:**
+**AWS EC2 Access Requirement:*Ensure that the SSM agent is installed and running in the target EC2 instance.
 
-- Ensure that SSM agent is installed and running in the target EC2 instance.
-- Ensure to create a Kubernetes secret having the AWS Access Key ID and Secret Access Key credentials in the `CHAOS_NAMESPACE`. A sample secret file looks like:
+- Ensure to create a Kubernetes secret having the AWS Access Key ID and Secret Access Key credentials in the `CHAOS_NAMESPACE`. A sample secret file looks like this:
 
 ```yaml
 apiVersion: v1
@@ -42,21 +41,21 @@ stringData:
 
 ### NOTE
 
-You can pass the VM credentials as secrets or as an chaosengine ENV variable.
+You can pass the VM credentials as secrets or as a chaosengine ENV variable.
 :::
 
 ## Default Validations
 
 :::info
 
-- EC2 instance should be in healthy state.
+- EC2 instance should be in a healthy state.
 
 :::
 
-## Experiment tunables
+## Experiment Tuneable
 
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
         <tr>
@@ -76,7 +75,7 @@ You can pass the VM credentials as secrets or as an chaosengine ENV variable.
         </tr>
         <tr>
             <td> LATENCY </td>
-            <td> Provide latency to be added to request in miliseconds.</td>
+            <td> Provide latency to be added to the request in milliseconds.</td>
             <td> Eg: 1000</td>
         </tr>
         <tr>
@@ -99,17 +98,17 @@ You can pass the VM credentials as secrets or as an chaosengine ENV variable.
         </tr>
         <tr>
             <td> CHAOS_INTERVAL </td>
-            <td> The interval (in sec) between successive instance termination </td>
+            <td> The interval (in seconds) between successive instance termination </td>
             <td> Defaults to 30s </td>
         </tr>
         <tr>
             <td> AWS_SHARED_CREDENTIALS_FILE </td>
-            <td> Provide the path for aws secret credentials</td>
+            <td> Provide the path for AWS secret credentials</td>
             <td> Defaults to <code>/tmp/cloud_config.yml</code> </td>
           </tr>
         <tr>
             <td> SEQUENCE </td>
-            <td> It defines sequence of chaos execution for multiple instance </td>
+            <td> It defines the sequence of chaos execution for multiple instances </td>
             <td> Default value: parallel. Supported: serial, parallel </td>
         </tr>
         <tr>
@@ -142,9 +141,9 @@ You can pass the VM credentials as secrets or as an chaosengine ENV variable.
 
 ## Experiment Examples
 
-### Common Experiment Tunables
+### Common Experiment Tuneable
 
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### Target Service Port
 

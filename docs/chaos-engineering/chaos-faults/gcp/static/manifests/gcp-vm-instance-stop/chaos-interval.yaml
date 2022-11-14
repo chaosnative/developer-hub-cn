@@ -5,7 +5,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: gcp-vm-instance-stop
@@ -24,4 +23,3 @@ spec:
           value: 'zone-01,zone-02'
         - name: GCP_PROJECT_ID
           value: 'project-id'
-       

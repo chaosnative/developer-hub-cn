@@ -4,8 +4,9 @@ title: EBS Loss By ID
 ---
 
 ## Introduction
-- It causes chaos to disrupt state of ebs volume by detaching it from the node/ec2 instance for a certain chaos duration using volume id.
-- In case of EBS persistent volumes, the volumes can get self-attached and experiment skips the re-attachment step.
+
+- It causes chaos to disrupt the state of EBS volume by detaching it from the node/ec2 instance for a certain chaos duration using volume id.
+- In the case of EBS persistent volumes, the volumes can get self-attached, and the experiment skips the re-attachment step.
 Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
 
 :::tip Fault execution flow chart
@@ -24,9 +25,11 @@ Coming soon.
 ## Prerequisites
 
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
-- Ensure that you have sufficient AWS access to attach or detach an ebs volume for the instance. 
-- Ensure to create a Kubernetes secret having the AWS access configuration(key) in the `CHAOS_NAMESPACE`. A sample secret file looks like:
+- Ensure that you have sufficient AWS access to attach or detach an EBS volume for the instance.
+- Ensure to create a Kubernetes secret having the AWS access configuration(key) in the `CHAOS_NAMESPACE`. A sample secret file looks like this:
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -40,19 +43,23 @@ stringData:
     aws_access_key_id = XXXXXXXXXXXXXXXXXXX
     aws_secret_access_key = XXXXXXXXXXXXXXX
 ```
-- If you change the secret key name (from `cloud_config.yml`) please also update the `AWS_SHARED_CREDENTIALS_FILE` ENV value on `experiment.yaml`with the same name.
+
+- If you change the secret key name (from `cloud_config.yml`) please also update the `AWS_SHARED_CREDENTIALS_FILE` ENV value on the `experiment.yaml` with the same name.
+
 :::
 
 ## Default Validations
 
 :::info
+
 - EBS volume is attached to the instance.
+
 :::
 
-## Experiment tunables
+## Experiment Tuneable
 
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -60,9 +67,9 @@ stringData:
         <th> Description </th>
         <th> Notes </th>
       </tr>
-      <tr> 
+      <tr>
         <td> EBS_VOLUME_ID </td>
-        <td> Comma separated list of volume IDs subjected to ebs detach chaos</td>
+        <td> Comma-separated list of volume IDs subjected to EBS detach chaos</td>
         <td> Eg. ebs-vol-1,ebs-vol-2 </td>
       </tr>
       <tr>
@@ -78,51 +85,50 @@ stringData:
         <th> Description </th>
         <th> Notes </th>
       </tr>
-      <tr> 
+      <tr>
         <td> TOTAL_CHAOS_DURATION </td>
         <td> The time duration for chaos insertion (sec) </td>
         <td> Defaults to 30s </td>
       </tr>
-      <tr> 
+      <tr>
         <td> CHAOS_INTERVAL </td>
         <td> The time duration between the attachment and detachment of the volumes (sec) </td>
         <td> Defaults to 30s </td>
-      </tr>  
+      </tr>
       <tr>
         <td> SEQUENCE </td>
-        <td> It defines sequence of chaos execution for multiple volumes</td>
+        <td> It defines the sequence of chaos execution for multiple volumes</td>
         <td> Default value: parallel. Supported: serial, parallel </td>
-      </tr>  
+      </tr>
       <tr>
         <td> RAMP_TIME </td>
         <td> Period to wait before and after injection of chaos in sec </td>
         <td> Eg: 30 </td>
-      </tr>   
+      </tr>
     </table>
 </details>
 
 ## Experiment Examples
 
-### Common and AWS specific tunables
+### Common and AWS-specific Tuneable
 
-Refer the [common attributes](../common-tunables-for-all-experiments) and [AWS specific tunable](./aws-experiments-tunables) to tune the common tunables for all experiments and aws specific tunables.
+Refer to the [common [attributes](../common-Tuneable-for-all-experiments) and AWS-specific [tuneable](./aws-experiments-Tuneable) to tune the common Tuneable for all experiments and AWS-specific Tuneable.
 
 ### Detach Volumes By ID
 
-It contains comma separated list of volume IDs subjected to ebs detach chaos. It can be tuned via `EBS_VOLUME_ID` ENV.
+It contains comma separate list of volume IDs subjected to EBS detach chaos. It can be tuned via `EBS_VOLUME_ID` ENV.
 
 Use the following example to tune this:
 
 [embedmd]:# (./static/manifests/ebs-loss-by-id/ebs-volume-id.yaml yaml)
 ```yaml
-# contains ebs volume id 
+# contains ebs volume id
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ebs-loss-by-id

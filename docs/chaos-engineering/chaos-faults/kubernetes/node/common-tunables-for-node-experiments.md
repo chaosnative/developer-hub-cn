@@ -1,12 +1,12 @@
 ---
-title: Common Node Experiment Tunables
+title: Common Node Experiment Tuneable
 ---
-Experiment tunables which are common for all the node experiments. These tunables can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
+Experiment Tuneable which are common for all the node experiments. These Tuneable can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
 
 ### Target Single Node
 
 It defines the name of the target node subjected to chaos. The target node can be tuned via `TARGET_NODE` ENV. It contains only a single node name.
-`NOTE`: It is supported by [node-drain, node-taint, node-restart, kubelet-service-kill, docker-service-kill] experiments. 
+`NOTE`: It is supported by [node-drain, node-taint, node-restart, kubelet-service-kill, docker-service-kill] experiments.
 
 Use the following example to tune this:
 
@@ -21,7 +21,7 @@ metadata:
 spec:
   engineState: "active"
   annotationCheck: "false"
-  chaosServiceAccount: litmus-admin
+  chaosServiceAccount: node-drain-sa
   experiments:
   - name: node-drain
     spec:
@@ -52,7 +52,7 @@ metadata:
 spec:
   engineState: "active"
   annotationCheck: "false"
-  chaosServiceAccount: litmus-admin
+  chaosServiceAccount: node-cpu-hog-sa
   experiments:
   - name: node-cpu-hog
     spec:
@@ -67,7 +67,7 @@ spec:
 
 ### Target Nodes With Labels
 
-It defines the labels of the targeted node(s) subjected to chaos. The node labels can be tuned via `NODE_LABEL` ENV. 
+It defines the labels of the targeted node(s) subjected to chaos. The node labels can be tuned via `NODE_LABEL` ENV.
 It is mutually exclusive with the `TARGET_NODE(S)` ENV. If `TARGET_NODE(S)` ENV is set then it will use the nodes provided inside it otherwise, it will derive the node name(s) with matching node labels.
 
 Use the following example to tune this:
@@ -82,7 +82,7 @@ metadata:
 spec:
   engineState: "active"
   annotationCheck: "false"
-  chaosServiceAccount: litmus-admin
+  chaosServiceAccount: node-cpu-hog-sa
   experiments:
   - name: node-cpu-hog
     spec:
@@ -114,7 +114,7 @@ metadata:
 spec:
   engineState: "active"
   annotationCheck: "false"
-  chaosServiceAccount: litmus-admin
+  chaosServiceAccount: node-cpu-hog-sa
   experiments:
   - name: node-cpu-hog
     spec:

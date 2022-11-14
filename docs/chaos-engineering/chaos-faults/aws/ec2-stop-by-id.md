@@ -62,10 +62,10 @@ If the target EC2 instance is a part of a self-managed nodegroup then make sure 
 
 :::
 
-## Experiment tunables
+## Experiment Tuneable
 
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -121,9 +121,9 @@ If the target EC2 instance is a part of a self-managed nodegroup then make sure 
 
 ## Experiment Examples
 
-### Common and AWS specific tunables
+### Common and AWS specific Tuneable
 
-Refer the [common attributes](../common-tunables-for-all-experiments) and [AWS specific tunable](./aws-experiments-tunables) to tune the common tunables for all experiments and aws specific tunables.
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) and [AWS specific tunable](./aws-experiments-Tuneable) to tune the common Tuneable for all experiments and aws specific Tuneable.
 
 ### Stop Instances By ID
 
@@ -140,7 +140,6 @@ metadata:
   name: engine-nginx
 spec:
   engineState: "active"
-  annotationCheck: "false"
   chaosServiceAccount: litmus-admin
   experiments:
   - name: ec2-terminate-by-id

@@ -4,6 +4,7 @@ title: Pod HTTP Modify Header
 ---
 
 ## Introduction
+
 - It injects http modify header on the service whose port is provided as `TARGET_SERVICE_PORT` by starting proxy server and then redirecting the traffic through the proxy server.
 - It can cause modification of headers of requests and responses of the service. This can be used to test service resilience towards incorrect or incomplete headers.
 
@@ -12,6 +13,7 @@ title: Pod HTTP Modify Header
 :::
 
 ## Uses
+
 <details>
 <summary>View the uses of the experiment</summary>
 <div>
@@ -20,18 +22,22 @@ Coming soon.
 </details>
 
 ## Prerequisites
+
 :::info
+
 - Ensure that Kubernetes Version > 1.16.
 :::
 
 ## Default Validations
+
 :::note
 The application pods should be in running state before and after chaos injection.
 :::
 
-## Experiment tunables
+## Experiment Tuneable
+
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
       <tr>
@@ -122,8 +128,9 @@ The application pods should be in running state before and after chaos injection
 
 ## Experiment Examples
 
-### Common and Pod specific tunables
-Refer the [common attributes](../../common-tunables-for-all-experiments) and [Pod specific tunable](./common-tunables-for-pod-experiments) to tune the common tunables for all experiments and pod specific tunables.
+### Common and Pod specific Tuneable
+
+Refer to the [common attributes](../../common-Tuneable-for-all-experiments) and [Pod specific tunable](./common-Tuneable-for-pod-experiments) to tune the common Tuneable for all experiments and pod specific Tuneable.
 
 ### Target Service Port
 
@@ -158,6 +165,7 @@ spec:
         - name: HEADERS_MAP
           value: '{"X-Litmus-Test-Header": "X-Litmus-Test-Value"}'
 ```
+
 ### Proxy Port
 
 It defines the port on which the proxy server will listen for requests. It can be tuned via `PROXY_PORT`
@@ -231,6 +239,7 @@ spec:
 ```
 
 ### Header Mode
+
 It defined whether the request or the response header has to be modified. It can be tuned via `HEADER_MODE` ENV.
 
 Use the following example to tune this:
@@ -266,6 +275,7 @@ spec:
 ```
 
 ### Toxicity
+
 It defines the toxicity value to be added to the http request. It can be tuned via `TOXICITY` ENV.
 Toxicity value defines the percentage of the total number of http requests to be affected.
 
@@ -302,6 +312,7 @@ spec:
 ```
 
 ### Network Interface
+
 It defines the network interface to be used for the proxy. It can be tuned via `NETWORK_INTERFACE` ENV.
 
 Use the following example to tune this:

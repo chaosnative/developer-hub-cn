@@ -17,7 +17,12 @@ title: VMware HTTP Reset Peer
 :::info
 
 - Ensure that Kubernetes Version >= 1.17
-- Ensure that you have sufficient Vcenter access to stop and start the VM.
+
+### vCenter Requirements
+
+- Ensure the connectivity of execution plane with vCenter and the hosts over 443 port.
+- Ensure that Vmware tool is installed on the target VM with remote execution enabled.
+- Ensure that you have sufficient vCenter permission to access hosts and VMs.
 - Ensure to create a Kubernetes secret having the Vcenter credentials in the `CHAOS_NAMESPACE`. A sample secret file looks like:
 
 ```yaml
@@ -46,10 +51,10 @@ You can pass the VM credentials as secrets or as an chaosengine ENV variable.
 
 :::
 
-## Experiment tunables
+## Experiment Tuneable
 
 <details>
-    <summary>Check the Experiment Tunables</summary>
+    <summary>Check the Experiment Tuneable</summary>
     <h2>Mandatory Fields</h2>
     <table>
         <tr>
@@ -135,9 +140,9 @@ You can pass the VM credentials as secrets or as an chaosengine ENV variable.
 
 ## Experiment Examples
 
-### Common Experiment Tunables
+### Common Experiment Tuneable
 
-Refer the [common attributes](../common-tunables-for-all-experiments) to tune the common tunables for all the experiments.
+Refer to the [common attributes](../common-Tuneable-for-all-experiments) to tune the common Tuneable for all the experiments.
 
 ### Target Service Port
 
