@@ -1,7 +1,7 @@
 ---
-title: Common Tunables for All Experiments
+title: Common Tunables for All Faults
 ---
-Experiment tunables which are common for all the experiments. These tunables can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
+Fault tunables which are common for all the faults. These tunables can be provided at `.spec.experiment[*].spec.components.env` in chaosengine.
 
 ### Duration of the chaos
 
@@ -161,7 +161,7 @@ spec:
     spec:
       components:
         env:
-        # defines the name of the chaoslib used for the experiment
+        # defines the name of the chaoslib used for the fault
         - name: LIB
           value: 'litmus'
 ```
@@ -200,15 +200,15 @@ spec:
 ### Image used by the helper pod
 
 It defines the image, which is used to launch the helper pod, if applicable. It can be tuned with the `LIB_IMAGE` ENV.
-It is supported by [container-kill, network-experiments, stress-experiments, dns-experiments, disk-fill, kubelet-service-kill, docker-service-kill, node-restart] experiments.
+It is supported by [container-kill, network-faults, stress-faults, dns-faults, disk-fill, kubelet-service-kill, docker-service-kill, node-restart] faults.
 
 Use the following example to tune this:
 
 [embedmd]:# (./static/manifest/common/lib-image.yaml yaml)
 ```yaml
 # it contains the lib image used for the helper pod
-# it support [container-kill, network-experiments, stress-experiments, dns-experiments, disk-fill,
-# kubelet-service-kill, docker-service-kill, node-restart] experiments
+# it support [container-kill, network-faults, stress-faults, dns-faults, disk-fill,
+# kubelet-service-kill, docker-service-kill, node-restart] faults
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
